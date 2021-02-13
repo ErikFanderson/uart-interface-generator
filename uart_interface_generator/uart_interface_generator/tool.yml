@@ -1,0 +1,32 @@
+# Name must match the class name in __init__.py
+tool: UARTIFaceTool 
+namespace: uart 
+
+# Dictionary containing all properties/attributes required by the tool
+properties:
+  name: 
+    description: "Name of uart module"
+    default: "uart_inst"
+    schema: "str()"
+  address_width:
+    description: "Address width (number of words is 1 << address_width)"
+    default: 7
+    schema: "int()"
+  word_width:
+    description: "Number of bits in a data word"
+    default: 8
+    schema: "int(min=1)"
+  fields:
+    description: "Memory fields (separate fields are aligned on word boundaries)"
+    default: 8
+    schema: "list(include('field'))"
+schema_includes:
+  field:
+    name: "str()"
+    address_buffer: "int(min=0)"
+    registers: "list(include('register'))"
+  register:
+    name: "str()"
+    read: "bool()"
+    write: "bool()"
+    width: "int(min=1)"

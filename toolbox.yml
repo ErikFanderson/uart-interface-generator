@@ -1,0 +1,32 @@
+#------------------------------------------------------------------------------
+# Author: Erik Anderson
+# Email: erik.francis.anderson@gmail.com
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+# List of directories containing tools
+#------------------------------------------------------------------------------
+tools:
+- "${internal.env.TOOLBOX_HOME}/toolbox/tools/jinja_tool/jinja_tool"
+- "${internal.env.UART_INTERFACE_GENERATOR_HOME}/toolbox-buildfile-tools/make/make"
+- "${internal.env.UART_INTERFACE_GENERATOR_HOME}/uart_interface_generator/uart_interface_generator"
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+# List of jobs
+#------------------------------------------------------------------------------
+jobs.build.tasks: [{tool: Make}]
+jobs.build.description: "Generates a Makefile w/ all jobs as targets"
+
+jobs.ssp1_fpga.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_fpga.yml"]}]
+jobs.ssp1_fpga.description: "Generate uart interface for superswitch phase 1 fpga driver"
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+# List of files and directories
+#------------------------------------------------------------------------------
+#files.example_file_0: "/path/to/example/file_0"
+#dirs.example_dir_0: "/path/to/example/dir_0/"
+#filelists.example_filelist_0: []
+#dirlists.example_dirlist_0: []
+#------------------------------------------------------------------------------

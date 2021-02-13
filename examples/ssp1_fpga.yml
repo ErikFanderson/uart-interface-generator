@@ -1,0 +1,56 @@
+uart.name: ssp1_fpga_uart
+uart.address_range: 128
+uart.word_width: 8
+uart.fields:
+- name: SCAN_IN_ADDRESS
+  address_buffer: 0
+  registers:
+  - name: "scan_in_addr_we"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_addr_cmd"
+    read: true
+    write: true
+    width: 2
+  - name: "scan_in_addr_data"
+    read: true
+    write: true
+    width: 7
+- name: SCAN_OUT_ADDRESS
+  address_buffer: 0
+  registers:
+  - name: "scan_out_addr_re"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_out_addr_data"
+    read: true
+    write: false
+    width: 7
+- name: SCAN_IN_INST
+  address_buffer: 0
+  registers:
+  - name: "scan_in_inst_we"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_inst_cmd"
+    read: true
+    write: true
+    width: 2
+  - name: "scan_in_inst_data"
+    read: true
+    write: true
+    width: 224
+- name: SCAN_OUT_INST
+  address_buffer: 0
+  registers:
+  - name: "scan_out_inst_re"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_out_inst_data"
+    read: true
+    write: false
+    width: 224

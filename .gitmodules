@@ -1,0 +1,9 @@
+[submodule "toolbox"]
+	path = toolbox
+	url = git@github.com:ErikFanderson/toolbox.git
+[submodule "toolbox-buildfile-tools"]
+	path = toolbox-buildfile-tools
+	url = git@github.com:ErikFanderson/toolbox-buildfile-tools.git
+[submodule "asic_utils"]
+	path = asic_utils
+	url = git@github.com:ErikFanderson/asic_utils.git
