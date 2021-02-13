@@ -1,5 +1,5 @@
 uart.name: ssp1_fpga_uart
-uart.address_range: 128
+uart.address_width: 7
 uart.word_width: 8
 uart.fields:
 - name: SCAN_IN_ADDRESS
@@ -54,3 +54,10 @@ uart.fields:
     read: true
     write: false
     width: 224
+- name: RESET 
+  address_buffer: 0
+  registers:
+  - name: "reset"
+    read: true
+    write: true
+    width: 1
