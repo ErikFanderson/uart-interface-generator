@@ -122,6 +122,8 @@ class UARTIFaceTool(Tool):
 
         # Memory map inst
         ports = []
+        ports.append(Connection(f"{self.uart['name']}_write_mem", "wmem"))
+        ports.append(Connection(f"{self.uart['name']}_read_mem", "rmem"))
         for field in self.uart["fields"]:
             for reg in field["registers"]:
                 if reg["write"]:

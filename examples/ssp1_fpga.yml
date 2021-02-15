@@ -17,6 +17,14 @@ uart.fields:
     read: true
     write: true
     width: 7
+  - name: "scan_in_addr_fifo_full"
+    read: true
+    write: false 
+    width: 1
+  - name: "scan_in_addr_fifo_empty"
+    read: true
+    write: false 
+    width: 1
 - name: SCAN_OUT_ADDRESS
   address_buffer: 0
   registers:
@@ -28,6 +36,14 @@ uart.fields:
     read: true
     write: false
     width: 7
+  - name: "scan_out_addr_fifo_full"
+    read: true
+    write: false 
+    width: 1
+  - name: "scan_out_addr_fifo_empty"
+    read: true
+    write: false 
+    width: 1
 - name: SCAN_IN_INST
   address_buffer: 0
   registers:
@@ -43,6 +59,14 @@ uart.fields:
     read: true
     write: true
     width: 224
+  - name: "scan_in_inst_fifo_full"
+    read: true
+    write: false
+    width: 1
+  - name: "scan_in_inst_fifo_empty"
+    read: true
+    write: false
+    width: 1
 - name: SCAN_OUT_INST
   address_buffer: 0
   registers:
@@ -54,10 +78,22 @@ uart.fields:
     read: true
     write: false
     width: 224
+  - name: "scan_out_inst_fifo_full"
+    read: true
+    write: false 
+    width: 1
+  - name: "scan_out_inst_fifo_empty"
+    read: true
+    write: false 
+    width: 1
 - name: RESET 
   address_buffer: 0
   registers:
   - name: "reset"
     read: true
     write: true
+    width: 1
+  - name: "scan_reset"
+    read: true
+    write: false 
     width: 1
