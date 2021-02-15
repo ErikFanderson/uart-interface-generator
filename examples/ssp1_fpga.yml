@@ -2,7 +2,14 @@ uart.name: ssp1_fpga_uart
 uart.address_width: 7
 uart.word_width: 8
 uart.fields:
-- name: SCAN_IN_ADDRESS
+- name: SCAN_IN_ADDRESS_DATA
+  address_buffer: 0
+  registers:
+  - name: "scan_in_addr_data"
+    read: true
+    write: true
+    width: 7
+- name: SCAN_IN_ADDRESS_CTRL
   address_buffer: 0
   registers:
   - name: "scan_in_addr_we"
@@ -13,10 +20,6 @@ uart.fields:
     read: true
     write: true
     width: 2
-  - name: "scan_in_addr_data"
-    read: true
-    write: true
-    width: 7
   - name: "scan_in_addr_fifo_full"
     read: true
     write: false 
@@ -25,17 +28,20 @@ uart.fields:
     read: true
     write: false 
     width: 1
-- name: SCAN_OUT_ADDRESS
+- name: SCAN_OUT_ADDRESS_DATA
+  address_buffer: 0
+  registers:
+  - name: "scan_out_addr_data"
+    read: true
+    write: false
+    width: 7
+- name: SCAN_OUT_ADDRESS_CTRL
   address_buffer: 0
   registers:
   - name: "scan_out_addr_re"
     read: true
     write: true
     width: 1
-  - name: "scan_out_addr_data"
-    read: true
-    write: false
-    width: 7
   - name: "scan_out_addr_fifo_full"
     read: true
     write: false 
@@ -44,7 +50,14 @@ uart.fields:
     read: true
     write: false 
     width: 1
-- name: SCAN_IN_INST
+- name: SCAN_IN_INST_DATA
+  address_buffer: 0
+  registers:
+  - name: "scan_in_inst_data"
+    read: true
+    write: true
+    width: 224
+- name: SCAN_IN_INST_CTRL
   address_buffer: 0
   registers:
   - name: "scan_in_inst_we"
@@ -55,10 +68,6 @@ uart.fields:
     read: true
     write: true
     width: 2
-  - name: "scan_in_inst_data"
-    read: true
-    write: true
-    width: 224
   - name: "scan_in_inst_fifo_full"
     read: true
     write: false
@@ -67,17 +76,20 @@ uart.fields:
     read: true
     write: false
     width: 1
-- name: SCAN_OUT_INST
+- name: SCAN_OUT_INST_DATA
+  address_buffer: 0
+  registers:
+  - name: "scan_out_inst_data"
+    read: true
+    write: false
+    width: 224
+- name: SCAN_OUT_INST_CTRL
   address_buffer: 0
   registers:
   - name: "scan_out_inst_re"
     read: true
     write: true
     width: 1
-  - name: "scan_out_inst_data"
-    read: true
-    write: false
-    width: 224
   - name: "scan_out_inst_fifo_full"
     read: true
     write: false 
