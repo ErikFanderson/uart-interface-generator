@@ -100,7 +100,7 @@ class UARTIFaceTool(Tool):
         uart_module.add_internal(
             "assign o_uart_rts_n = !(rx_data_ready && rx_busy);\n")
         uart_module.add_internal(
-            "assign tx_data_ready = !(i_uart_cts_n && tx_busy);\n")
+            "assign tx_data_ready = !(i_uart_cts_n || tx_busy);\n")
         uart_module.add_internal("assign tx_en = tx_data_valid;\n")
 
         # Create inst of uart
