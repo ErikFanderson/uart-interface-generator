@@ -98,6 +98,13 @@ uart.fields:
     read: true
     write: false 
     width: 1
+- name: USER 
+  address_buffer: 0
+  registers:
+  - name: "leds"
+    read: true
+    write: true
+    width: 8 
 - name: RESET 
   address_buffer: 0
   registers:
