@@ -77,46 +77,31 @@ class UARTIFaceTool(Tool):
         uart_module.add_signal(
             Signal("rmem", DataType.WIRE,
                    Vec(Range(w_width - 1, 0), Range((1 << a_width) - 1, 0))))
-        uart_module.add_signal(Signal("tx_en", DataType.WIRE))
+        uart_module.add_signal(Signal("tx_valid", DataType.WIRE))
+        uart_module.add_signal(Signal("tx_ready", DataType.WIRE))
         uart_module.add_signal(
-            Signal("tx_byte", DataType.WIRE, Vec(Range(7, 0))))
-        uart_module.add_signal(Signal("rx_done", DataType.WIRE))
+            Signal("tx_data", DataType.WIRE, Vec(Range(7, 0))))
+        uart_module.add_signal(Signal("rx_valid", DataType.WIRE))
+        uart_module.add_signal(Signal("rx_ready", DataType.WIRE))
         uart_module.add_signal(
-            Signal("rx_byte", DataType.WIRE, Vec(Range(7, 0))))
-        uart_module.add_signal(Signal("rx_busy", DataType.WIRE))
-        uart_module.add_signal(Signal("tx_busy", DataType.WIRE))
-        uart_module.add_signal(Signal("rx_data_valid", DataType.WIRE))
-        uart_module.add_signal(Signal("rx_data_ready", DataType.WIRE))
-        uart_module.add_signal(Signal("tx_data_valid", DataType.WIRE))
-        uart_module.add_signal(Signal("tx_data_ready", DataType.WIRE))
-
-        # Assign statements
-        # TODO may want to build a ready valid interface into the UART... Current one doesn't have one.
-        # IF rx_done is asserted but we are not ready to process is then we lost the data potentially
-        # Honestly this will probably still work.
-        uart_module.add_internal(
-            "assign rx_data_valid = rx_done;\n"
-        )  # TODO data valid needs to stay valid until processed!!?
-        uart_module.add_internal(
-            "assign o_uart_rts_n = !(rx_data_ready && rx_busy);\n")
-        uart_module.add_internal(
-            "assign tx_data_ready = !(i_uart_cts_n || tx_busy);\n")
-        uart_module.add_internal("assign tx_en = tx_data_valid;\n")
+            Signal("rx_data", DataType.WIRE, Vec(Range(7, 0))))
 
         # Create inst of uart
-        ports = [(Connection("clk", "i_clk"))]
-        ports.append((Connection("rst", "i_rst")))
-        ports.append((Connection("rx", "i_uart_rx")))
-        ports.append((Connection("tx", "o_uart_tx")))
-        ports.append((Connection("transmit", "tx_en")))
-        ports.append((Connection("tx_byte", "tx_byte")))
-        ports.append((Connection("received", "rx_done")))
-        ports.append((Connection("rx_byte", "rx_byte")))
-        ports.append((Connection("is_receiving", "rx_busy")))
-        ports.append((Connection("is_transmitting", "tx_busy")))
-        ports.append((Connection("recv_error", "o_uart_rx_error")))
-        params = [Connection("baud_rate", "BaudRate")]
-        params.append(Connection("sys_clk_freq", "SystemClockFrequency"))
+        ports = [(Connection("i_clk", "i_clk"))]
+        ports.append((Connection("i_rst", "i_rst")))
+        ports.append((Connection("i_rx", "i_uart_rx")))
+        ports.append((Connection("o_tx", "o_uart_tx")))
+        ports.append((Connection("i_cts_n", "i_uart_cts_n")))
+        ports.append((Connection("o_rts_n", "o_uart_rts_n")))
+        ports.append((Connection("o_tx_ready", "tx_ready")))
+        ports.append((Connection("i_tx_valid", "tx_valid")))
+        ports.append((Connection("i_tx_data", "tx_data")))
+        ports.append((Connection("i_rx_ready", "rx_ready")))
+        ports.append((Connection("o_rx_valid", "rx_valid")))
+        ports.append((Connection("o_rx_data", "rx_data")))
+        params = [Connection("BaudRate", "BaudRate")]
+        params.append(Connection("SystemClockFrequency", "SystemClockFrequency"))
+        params.append(Connection("DataSize", 8))
         uart_inst = ModuleInstance("uart", "uart_inst", ports, params)
         uart_module.add_instance(uart_inst)
 
@@ -140,12 +125,12 @@ class UARTIFaceTool(Tool):
         params = [Connection("DataSize", self.uart["word_width"])]
         ports = [(Connection("i_clk", "i_clk"))]
         ports.append((Connection("i_rst", "i_rst")))
-        ports.append((Connection("i_rx_data", "rx_byte")))
-        ports.append((Connection("i_rx_data_valid", "rx_data_valid")))
-        ports.append((Connection("o_rx_data_ready", "rx_data_ready")))
-        ports.append((Connection("o_tx_data", "tx_byte")))
-        ports.append((Connection("o_tx_data_valid", "tx_data_valid")))
-        ports.append((Connection("i_tx_data_ready", "tx_data_ready")))
+        ports.append((Connection("i_rx_data", "rx_data")))
+        ports.append((Connection("i_rx_valid", "rx_valid")))
+        ports.append((Connection("o_rx_ready", "rx_ready")))
+        ports.append((Connection("o_tx_data", "tx_data")))
+        ports.append((Connection("o_tx_valid", "tx_valid")))
+        ports.append((Connection("i_tx_ready", "tx_ready")))
         ports.append((Connection("o_wmem", "wmem")))
         ports.append((Connection("i_rmem", "rmem")))
         mem_access_inst = ModuleInstance(f"uart_mem_access",

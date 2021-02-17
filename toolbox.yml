@@ -18,6 +18,9 @@ tools:
 jobs.build.tasks: [{tool: Make}]
 jobs.build.description: "Generates a Makefile w/ all jobs as targets"
 
+jobs.uart_led.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/uart_led.yml"]}]
+jobs.uart_led.description: "Generate uart interface for uart_led example"
+
 jobs.ssp1_fpga.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_fpga.yml"]}]
 jobs.ssp1_fpga.description: "Generate uart interface for superswitch phase 1 fpga driver"
 #------------------------------------------------------------------------------

@@ -7,6 +7,14 @@ build:
 #----------------------------------------------------------
 
 #----------------------------------------------------------
+# Target "uart_led" 
+#----------------------------------------------------------
+uart_led: 
+	toolbox-cli --color -l info -b build -o toolbox uart_led	
+.PHONY: uart_led
+#----------------------------------------------------------
+
+#----------------------------------------------------------
 # Target "ssp1_fpga" 
 #----------------------------------------------------------
 ssp1_fpga: 
@@ -22,6 +30,7 @@ list:
 	@echo "# Toolbox generated make targets"
 	@echo "#--------------------------------------------------------------------"
 	@echo "build        Generates a Makefile w/ all jobs as targets"
+	@echo "uart_led     Generate uart interface for uart_led example"
 	@echo "ssp1_fpga    Generate uart interface for superswitch phase 1 fpga driver"
 	@echo "#--------------------------------------------------------------------"
 .PHONY: list 
