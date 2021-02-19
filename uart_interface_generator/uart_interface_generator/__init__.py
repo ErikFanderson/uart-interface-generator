@@ -32,6 +32,18 @@ class UARTIFaceTool(Tool):
     def steps(self):
         return [self.call_mem_map, self.gen_uart_module]
 
+
+    #def write_field_start_def(name, addr, fp):
+    #    ''' defines start address '''
+    #    fp.write("`define {}_field_addr {}\n".format(name.replace(" ", "_"),
+    #                                                 addr // 8))
+
+    #def generate_fields(self):
+    #    conf = yaml.load(fp_in, Loader=yaml.Loader)
+    #    mem_name = conf["name"]
+    #    word_width = conf["word_width"]
+    #    address_range = conf["address_range"]
+
     def call_mem_map(self):
         """Just calls the memory map script in asic utils"""
         out_fpath = os.path.join(self.get_db("internal.job_dir"), "config.yml")
