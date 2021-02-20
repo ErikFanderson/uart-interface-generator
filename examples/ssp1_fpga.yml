@@ -293,25 +293,46 @@ uart.fields:
     read: true
     write: false
     width: 1
-- name: SCAN_OUT_INST_DATA
+- name: SCAN_LOOPBACK_DATA_0
   address_buffer: 0
   registers:
-  - name: "scan_out_inst_data"
+  - name: "scan_loopback_data_0"
     read: true
     write: false
-    width: 224
-- name: SCAN_OUT_INST_CTRL
+    width: 7 
+- name: SCAN_LOOPBACK_DATA_1
   address_buffer: 0
   registers:
-  - name: "scan_out_inst_re"
+  - name: "scan_loopback_data_1"
+    read: true
+    write: false
+    width: 7 
+- name: SCAN_LOOPBACK_DATA_2
+  address_buffer: 0
+  registers:
+  - name: "scan_loopback_data_2"
+    read: true
+    write: false
+    width: 7 
+- name: SCAN_LOOPBACK_DATA_3
+  address_buffer: 0
+  registers:
+  - name: "scan_loopback_data_3"
+    read: true
+    write: false
+    width: 7 
+- name: SCAN_LOOPBACK_CTRL
+  address_buffer: 0
+  registers:
+  - name: "scan_loopback_re"
     read: true
     write: true
     width: 1
-  - name: "scan_out_inst_fifo_full"
+  - name: "scan_loopback_fifo_full"
     read: true
     write: false 
     width: 1
-  - name: "scan_out_inst_fifo_empty"
+  - name: "scan_loopback_fifo_empty"
     read: true
     write: false 
     width: 1
