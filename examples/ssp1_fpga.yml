@@ -343,6 +343,41 @@ uart.fields:
     read: true
     write: true
     width: 8 
+- name: DUMMY_SCAN_SEG_OUT_0 
+  address_buffer: 0
+  registers:
+  - name: "dummy_scan_seg_out_0"
+    read: true
+    write: false
+    width: 7
+- name: DUMMY_SCAN_SEG_OUT_1
+  address_buffer: 0
+  registers:
+  - name: "dummy_scan_seg_out_1"
+    read: true
+    write: false
+    width: 7
+- name: DUMMY_SCAN_SEG_OUT_2
+  address_buffer: 0
+  registers:
+  - name: "dummy_scan_seg_out_2"
+    read: true
+    write: false
+    width: 7
+- name: DUMMY_SCAN_SEG_OUT_3
+  address_buffer: 0
+  registers:
+  - name: "dummy_scan_seg_out_3"
+    read: true
+    write: false
+    width: 7
+- name: DUMMY_SCAN_SEG_SEL
+  address_buffer: 0
+  registers:
+  - name: "dummy_scan_seg_sel"
+    read: true
+    write: true 
+    width: 3 
 - name: RESET 
   address_buffer: 0
   registers:
