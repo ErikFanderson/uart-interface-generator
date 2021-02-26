@@ -23,44 +23,77 @@ from asic_utils.verilog import *
 from asic_utils.str_to_file import *
 from jinja_tool import JinjaTool
 
+# TODO get rid of address width? Memory will be sized by number of fields
+# TODO make the type only R or W not read: bool write: bool
 
-class UARTIFaceTool(Tool):
+class UARTIFaceTool(JinjaTool):
     """Generates UART IFace with memory mapped stuff"""
     def __init__(self, db: Database, log: Callable[[str, LogLevel], None]):
         super(UARTIFaceTool, self).__init__(db, log)
         self.uart = self.get_db(self.get_namespace("UARTIFaceTool"))
         self.bin = BinaryDriver("vlog-mem-map")
         self.db = None 
+        self.fields = None
 
     def steps(self):
         return [self.populate_database, self.gen_python_hal, self.call_mem_map, self.gen_uart_module]
-
-    # TODO get rid of address width? Memory will be sized by number of fields
-    # TODO make the type only R or W not read: bool write: bool
+    
+    #--------------------------------------------------------------------------
+    # Database methods 
+    #--------------------------------------------------------------------------
 
     def populate_database(self):
         self.db = self.generate_memory_map_database()
+        self.fields = self.generate_fields()
+    
+    def generate_fields(self):
+        """Creates memory map database"""
+        fields = {}
+        current_address = 0
+        for field in self.uart["fields"]:
+            fields[field["name"]] = {"registers": {}}
+            field_width = 0
+            for reg in field["registers"]:
+                fields[field["name"]]["registers"][reg["name"]] = {}
+                fields[field["name"]]["registers"][reg["name"]]["width"] = reg["width"] 
+                lsb_tot_bp = current_address * self.uart["word_width"] + field_width
+                fields[field["name"]]["registers"][reg["name"]]["lsbit_total_bit_position"] = lsb_tot_bp 
+                fields[field["name"]]["registers"][reg["name"]]["lsbit_address"] =  math.floor(lsb_tot_bp / self.uart["word_width"])
+                fields[field["name"]]["registers"][reg["name"]]["lsbit_address_bit_position"] = lsb_tot_bp % self.uart["word_width"]
+                field_width += reg["width"]
+                msb_tot_bp = current_address * self.uart["word_width"] + field_width - 1
+                fields[field["name"]]["registers"][reg["name"]]["msbit_total_bit_position"] = msb_tot_bp 
+                fields[field["name"]]["registers"][reg["name"]]["msbit_address"] =  math.floor(msb_tot_bp / self.uart["word_width"])
+                fields[field["name"]]["registers"][reg["name"]]["msbit_address_bit_position"] = msb_tot_bp % self.uart["word_width"]
+            num_addresses = math.ceil(field_width / self.uart["word_width"])
+            fields[field["name"]]["start_address"] = current_address 
+            fields[field["name"]]["end_address"] = current_address + num_addresses - 1 
+            current_address += num_addresses
+        return fields
 
     def generate_memory_map_database(self):
         """Creates memory map database"""
-        db = {}
+        db = {"fields": [], "word_width": self.uart["word_width"]}
         current_address = 0
         for field in self.uart["fields"]:
-            db[field["name"]] = {}
             field_width = 0
+            new_field = {"registers": []}
             for reg in field["registers"]:
-                db[field["name"]][reg["name"]] = {}
-                db[field["name"]][reg["name"]]["width"] = reg["width"]
-                db[field["name"]][reg["name"]]["lsbit_total_bit_position"] = current_address * self.uart["word_width"] + field_width
-                db[field["name"]][reg["name"]]["lsbit_address"] =  math.floor(db[field["name"]][reg["name"]]["lsbit_total_bit_position"] / self.uart["word_width"])
-                db[field["name"]][reg["name"]]["lsbit_address_bit_position"] = db[field["name"]][reg["name"]]["lsbit_total_bit_position"] % self.uart["word_width"]
+                new_reg = {}
+                new_reg["name"] = reg["name"]
+                new_reg["width"] = reg["width"]
+                new_reg["lsbit_total_bit_position"] = current_address * self.uart["word_width"] + field_width
+                new_reg["lsbit_address"] =  math.floor(new_reg["lsbit_total_bit_position"] / self.uart["word_width"])
+                new_reg["lsbit_address_bit_position"] = new_reg["lsbit_total_bit_position"] % self.uart["word_width"]
                 field_width += reg["width"]
-                db[field["name"]][reg["name"]]["msbit_total_bit_position"] = current_address * self.uart["word_width"] + field_width - 1
-                db[field["name"]][reg["name"]]["msbit_address"] =  math.floor(db[field["name"]][reg["name"]]["msbit_total_bit_position"] / self.uart["word_width"])
-                db[field["name"]][reg["name"]]["msbit_address_bit_position"] = db[field["name"]][reg["name"]]["msbit_total_bit_position"] % self.uart["word_width"]
+                new_reg["msbit_total_bit_position"] = current_address * self.uart["word_width"] + field_width - 1
+                new_reg["msbit_address"] =  math.floor(new_reg["msbit_total_bit_position"] / self.uart["word_width"])
+                new_reg["msbit_address_bit_position"] = new_reg["msbit_total_bit_position"] % self.uart["word_width"]
+                new_field["registers"].append(new_reg)
             num_addresses = math.ceil(field_width / self.uart["word_width"])
-            db[field["name"]]["start_address"] = current_address
-            db[field["name"]]["end_address"] = current_address + num_addresses - 1
+            new_field["start_address"] = current_address 
+            new_field["end_address"] = current_address + num_addresses - 1 
+            db["fields"].append(new_field)
             current_address += num_addresses
         return db
 
@@ -82,24 +115,9 @@ class UARTIFaceTool(Tool):
     #--------------------------------------------------------------------------
     
     def gen_python_hal(self):
-        tab = 4 * ' '
-        py_hal = File(os.path.join(self.get_db("internal.job_dir"), "UARTDriver.py"), "#")
-        py_hal.add_line("class UARTDriver:") 
-        py_hal.add_line(f'{tab}"""Autogenerated UARTDriver from UART-interface-generator"""') 
-        basic_sec = Section("Basic read/write methods", "#")
-        py_hal.add(basic_sec)
-        reg_sec = Section("Register read/write methods", "#")
-        py_hal.add(reg_sec)
-        self.log(f"Python UART Driver: {Path(py_hal.fpath).relative_to(self.get_db('internal.work_dir'))}")
-        py_hal.generate()
-
-    #def gen_basic_methods
-    #    basic_sec = Section("Basic read/write methods", "#")
-    #    basic_sec.add_line("class UART")
-    #    return ""
-    
-    #def gen_()
-    #    return ""
+        template = "UARTDriver.py"
+        dest = os.path.join(self.get_db("internal.job_dir"), template)
+        self.render_to_file(template, dest, fields=self.fields)
 
     #--------------------------------------------------------------------------
     # Verilog generation methods
