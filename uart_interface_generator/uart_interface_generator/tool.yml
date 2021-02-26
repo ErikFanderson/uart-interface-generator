@@ -8,14 +8,14 @@ properties:
     description: "Name of uart module"
     default: "uart_inst"
     schema: "str()"
-  address_width:
-    description: "Address width (number of words is 1 << address_width)"
-    default: 7
-    schema: "int()"
-  word_width:
-    description: "Number of bits in a data word"
-    default: 8
-    schema: "int(min=1)"
+  #address_width:
+  #  description: "Address width (number of words is 1 << address_width)"
+  #  default: 7
+  #  schema: "int()"
+  #word_width:
+  #  description: "Number of bits in a data word"
+  #  default: 8
+  #  schema: "int(min=1)"
   fields:
     description: "Memory fields (separate fields are aligned on word boundaries)"
     default: 8
@@ -23,7 +23,7 @@ properties:
 schema_includes:
   field:
     name: "str()"
-    address_buffer: "int(min=0)"
+    #address_buffer: "int(min=0)"
     registers: "list(include('register'))"
   register:
     name: "str()"

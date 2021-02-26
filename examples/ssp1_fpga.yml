@@ -1,16 +1,12 @@
 uart.name: ssp1_fpga_uart
-uart.address_width: 7
-uart.word_width: 8
 uart.fields:
 - name: SCAN_IN_ADDRESS_DATA
-  address_buffer: 0
   registers:
   - name: "scan_in_addr_data"
     read: true
     write: true
     width: 7
 - name: SCAN_IN_ADDRESS_CTRL
-  address_buffer: 0
   registers:
   - name: "scan_in_addr_we"
     read: true
@@ -29,14 +25,12 @@ uart.fields:
     write: false 
     width: 1
 - name: SCAN_OUT_ADDRESS_DATA
-  address_buffer: 0
   registers:
   - name: "scan_out_addr_data"
     read: true
     write: false
     width: 7
 - name: SCAN_OUT_ADDRESS_CTRL
-  address_buffer: 0
   registers:
   - name: "scan_out_addr_re"
     read: true
@@ -50,232 +44,137 @@ uart.fields:
     read: true
     write: false 
     width: 1
-- name: SCAN_IN_INST_0_DATA
-  address_buffer: 0
+- name: SCAN_IN_INST_DATA
   registers:
   - name: scan_in_inst_0_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_1_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_1_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_2_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_2_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_3_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_3_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_4_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_4_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_5_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_5_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_6_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_6_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_7_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_7_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_8_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_8_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_9_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_9_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_10_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_10_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_11_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_11_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_12_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_12_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_13_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_13_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_14_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_14_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_15_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_15_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_16_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_16_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_17_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_17_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_18_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_18_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_19_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_19_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_20_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_20_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_21_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_21_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_22_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_22_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_23_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_23_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_24_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_24_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_25_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_25_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_26_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_26_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_27_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_27_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_28_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_28_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_29_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_29_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_30_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_30_data
     read: true
     write: true
     width: 7
-- name: SCAN_IN_INST_31_DATA
-  address_buffer: 0
-  registers:
   - name: scan_in_inst_31_data
     read: true
     write: true
     width: 7
 - name: SCAN_IN_INST_CTRL
-  address_buffer: 0
   registers:
   - name: "scan_in_inst_we"
     read: true
@@ -293,36 +192,25 @@ uart.fields:
     read: true
     write: false
     width: 1
-- name: SCAN_LOOPBACK_DATA_0
-  address_buffer: 0
+- name: SCAN_LOOPBACK_DATA
   registers:
   - name: "scan_loopback_data_0"
     read: true
     write: false
     width: 7 
-- name: SCAN_LOOPBACK_DATA_1
-  address_buffer: 0
-  registers:
   - name: "scan_loopback_data_1"
     read: true
     write: false
     width: 7 
-- name: SCAN_LOOPBACK_DATA_2
-  address_buffer: 0
-  registers:
   - name: "scan_loopback_data_2"
     read: true
     write: false
     width: 7 
-- name: SCAN_LOOPBACK_DATA_3
-  address_buffer: 0
-  registers:
   - name: "scan_loopback_data_3"
     read: true
     write: false
     width: 7 
 - name: SCAN_LOOPBACK_CTRL
-  address_buffer: 0
   registers:
   - name: "scan_loopback_re"
     read: true
@@ -337,49 +225,36 @@ uart.fields:
     write: false 
     width: 1
 - name: USER 
-  address_buffer: 0
   registers:
   - name: "leds"
     read: true
     write: true
     width: 8 
-- name: DUMMY_SCAN_SEG_OUT_0 
-  address_buffer: 0
+- name: DUMMY_SCAN_SEG_OUT 
   registers:
   - name: "dummy_scan_seg_out_0"
     read: true
     write: false
     width: 7
-- name: DUMMY_SCAN_SEG_OUT_1
-  address_buffer: 0
-  registers:
   - name: "dummy_scan_seg_out_1"
     read: true
     write: false
     width: 7
-- name: DUMMY_SCAN_SEG_OUT_2
-  address_buffer: 0
-  registers:
   - name: "dummy_scan_seg_out_2"
     read: true
     write: false
     width: 7
-- name: DUMMY_SCAN_SEG_OUT_3
-  address_buffer: 0
-  registers:
   - name: "dummy_scan_seg_out_3"
     read: true
     write: false
     width: 7
 - name: DUMMY_SCAN_SEG_SEL
-  address_buffer: 0
   registers:
   - name: "dummy_scan_seg_sel"
     read: true
     write: true 
     width: 3 
 - name: RESET 
-  address_buffer: 0
   registers:
   - name: "reset"
     read: true

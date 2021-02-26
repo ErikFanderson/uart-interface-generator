@@ -25,6 +25,7 @@ from jinja_tool import JinjaTool
 
 # TODO get rid of address width? Memory will be sized by number of fields
 # TODO make the type only R or W not read: bool write: bool
+# Need to make word width adjustable!
 
 class UARTIFaceTool(JinjaTool):
     """Generates UART IFace with memory mapped stuff"""
@@ -34,9 +35,30 @@ class UARTIFaceTool(JinjaTool):
         self.bin = BinaryDriver("vlog-mem-map")
         self.db = None 
         self.fields = None
+        self.uart["word_width"] = 8
+        self.address_width = 7
+        # UART blocks only support word width of 8 and address range of 128 (for now)
+        self.uart["word_width"] = 8
+        self.uart["address_width"] = 7
+        self.uart["address_range"] = 1 << self.uart["address_width"]
+        # Address buffer is not helpful
+        for i, field in enumerate(self.uart["fields"]):
+                self.uart["fields"][i]["address_buffer"] = 0
 
     def steps(self):
-        return [self.populate_database, self.gen_python_hal, self.call_mem_map, self.gen_uart_module]
+        return [self.populate_database, self.call_mem_map, self.gen_python_hal, self.gen_uart_module]
+
+    def call_mem_map(self):
+        """Just calls the memory map script in asic utils"""
+        out_fpath = os.path.join(self.get_db("internal.job_dir"), "config.yml")
+        rel_out_fpath = Path(out_fpath).relative_to(
+            self.get_db("internal.work_dir"))
+        with open(out_fpath, "w") as fp:
+            fp.write(yaml.dump(self.uart))
+        self.log(f"Generated config file for vlog-mem-map: {rel_out_fpath}")
+        self.bin.add_option("config.yml")
+        print(self.bin.get_execute_string())
+        self.bin.execute(self.get_db("internal.job_dir"))
     
     #--------------------------------------------------------------------------
     # Database methods 
@@ -96,19 +118,6 @@ class UARTIFaceTool(JinjaTool):
             db["fields"].append(new_field)
             current_address += num_addresses
         return db
-
-    def call_mem_map(self):
-        """Just calls the memory map script in asic utils"""
-        out_fpath = os.path.join(self.get_db("internal.job_dir"), "config.yml")
-        rel_out_fpath = Path(out_fpath).relative_to(
-            self.get_db("internal.work_dir"))
-        self.uart["address_range"] = 1 << self.uart["address_width"]
-        with open(out_fpath, "w") as fp:
-            fp.write(yaml.dump(self.uart))
-        self.log(f"Generated config file for vlog-mem-map: {rel_out_fpath}")
-        self.bin.add_option("config.yml")
-        print(self.bin.get_execute_string())
-        self.bin.execute(self.get_db("internal.job_dir"))
     
     #--------------------------------------------------------------------------
     # Python HAL generation methods
@@ -146,14 +155,12 @@ class UARTIFaceTool(JinjaTool):
                 uart_module.add_port(p)
 
         # Add signals to top module
-        w_width = self.uart["word_width"]
-        a_width = self.uart["address_width"]
         uart_module.add_signal(
             Signal("wmem", DataType.WIRE,
-                   Vec(Range(w_width - 1, 0), Range((1 << a_width) - 1, 0))))
+                   Vec(Range(self.uart["word_width"] - 1, 0), Range((1 << self.uart["address_width"]) - 1, 0))))
         uart_module.add_signal(
             Signal("rmem", DataType.WIRE,
-                   Vec(Range(w_width - 1, 0), Range((1 << a_width) - 1, 0))))
+                   Vec(Range(self.uart["word_width"] - 1, 0), Range((1 << self.uart["address_width"]) - 1, 0))))
         uart_module.add_signal(Signal("tx_valid", DataType.WIRE))
         uart_module.add_signal(Signal("tx_ready", DataType.WIRE))
         uart_module.add_signal(
