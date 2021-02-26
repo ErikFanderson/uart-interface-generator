@@ -135,7 +135,6 @@ class UARTIFaceTool(JinjaTool):
         uart_module.add_port(Port("i_uart_rx", IO.INPUT, DataType.WIRE))
         uart_module.add_port(Port("o_uart_rts_n", IO.OUTPUT, DataType.WIRE))
         uart_module.add_port(Port("i_uart_cts_n", IO.INPUT, DataType.WIRE))
-        uart_module.add_port(Port("o_uart_rx_error", IO.OUTPUT, DataType.WIRE))
         for field in self.uart["fields"]:
             for reg in field["registers"]:
                 if reg["write"]:

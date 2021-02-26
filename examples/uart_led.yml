@@ -5,10 +5,14 @@ uart.fields:
 - name: LED 
   address_buffer: 0
   registers:
-  - name: "leds"
+  - name: "leds0"
     read: true
     write: true
-    width: 8 
+    width: 4
+  - name: "leds1"
+    read: true
+    write: true
+    width: 4 
 - name: RESET 
   address_buffer: 0
   registers:
