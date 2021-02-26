@@ -1,0 +1,18 @@
+uart.name: uart_led 
+uart.address_width: 7
+uart.word_width: 8
+uart.fields:
+- name: LED 
+  address_buffer: 0
+  registers:
+  - name: "leds"
+    read: true
+    write: true
+    width: 8 
+- name: RESET 
+  address_buffer: 0
+  registers:
+  - name: "reset"
+    read: true
+    write: true
+    width: 10 
