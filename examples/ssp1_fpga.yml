@@ -2,18 +2,18 @@ uart.name: ssp1_fpga_uart
 uart.fields:
 - name: SCAN_IN_ADDRESS_DATA
   registers:
-  - name: "scan_in_addr_enable"
-    read: true
-    write: true
-    width: 1 
-  - name: "scan_in_addr_lb_sel"
-    read: true
-    write: true
-    width: 4 
   - name: "scan_in_addr_address"
     read: true
     write: true
     width: 2 
+  - name: "scan_in_addr_lb_sel"
+    read: true
+    write: true
+    width: 4 
+  - name: "scan_in_addr_enable"
+    read: true
+    write: true
+    width: 1 
 - name: SCAN_IN_ADDRESS_CTRL
   registers:
   - name: "scan_in_addr_we"
@@ -34,18 +34,18 @@ uart.fields:
     width: 1
 - name: SCAN_OUT_ADDRESS_DATA
   registers:
-  - name: "scan_out_addr_enable"
-    read: true
-    write: false 
-    width: 1 
-  - name: "scan_out_addr_lb_sel"
-    read: true
-    write: false 
-    width: 4 
   - name: "scan_out_addr_address"
     read: true
     write: false 
     width: 2 
+  - name: "scan_out_addr_lb_sel"
+    read: true
+    write: false 
+    width: 4 
+  - name: "scan_out_addr_enable"
+    read: true
+    write: false 
+    width: 1 
 - name: SCAN_OUT_ADDRESS_CTRL
   registers:
   - name: "scan_out_addr_re"
