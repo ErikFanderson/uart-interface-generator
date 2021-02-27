@@ -77,6 +77,7 @@ class UARTIFaceTool(JinjaTool):
             field_width = 0
             for reg in field["registers"]:
                 fields[field["name"]]["registers"][reg["name"]] = {}
+                fields[field["name"]]["registers"][reg["name"]]["write"] = reg["write"]
                 fields[field["name"]]["registers"][reg["name"]]["width"] = reg["width"] 
                 lsb_tot_bp = current_address * self.uart["word_width"] + field_width
                 fields[field["name"]]["registers"][reg["name"]]["lsbit_total_bit_position"] = lsb_tot_bp 
