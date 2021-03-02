@@ -16,7 +16,7 @@ uart.fields:
     width: 1 
 - name: SCAN_IN_ADDRESS_CTRL
   registers:
-  - name: "scan_in_addr_we"
+  - name: "scan_in_addr_valid_pulse"
     read: true
     write: true
     width: 1
@@ -24,11 +24,7 @@ uart.fields:
     read: true
     write: true
     width: 2
-  - name: "scan_in_addr_fifo_full"
-    read: true
-    write: false 
-    width: 1
-  - name: "scan_in_addr_fifo_empty"
+  - name: "scan_in_addr_ready"
     read: true
     write: false 
     width: 1
@@ -48,15 +44,11 @@ uart.fields:
     width: 1 
 - name: SCAN_OUT_ADDRESS_CTRL
   registers:
-  - name: "scan_out_addr_re"
+  - name: "scan_out_addr_ready"
     read: true
     write: true
     width: 1
-  - name: "scan_out_addr_fifo_full"
-    read: true
-    write: false 
-    width: 1
-  - name: "scan_out_addr_fifo_empty"
+  - name: "scan_out_addr_valid"
     read: true
     write: false 
     width: 1
@@ -192,7 +184,7 @@ uart.fields:
     width: 7
 - name: SCAN_IN_INST_CTRL
   registers:
-  - name: "scan_in_inst_we"
+  - name: "scan_in_inst_valid_pulse"
     read: true
     write: true
     width: 1
@@ -200,11 +192,7 @@ uart.fields:
     read: true
     write: true
     width: 2
-  - name: "scan_in_inst_fifo_full"
-    read: true
-    write: false
-    width: 1
-  - name: "scan_in_inst_fifo_empty"
+  - name: "scan_in_inst_ready"
     read: true
     write: false
     width: 1
@@ -228,15 +216,11 @@ uart.fields:
     width: 7 
 - name: SCAN_LOOPBACK_CTRL
   registers:
-  - name: "scan_loopback_re"
+  - name: "scan_loopback_ready"
     read: true
     write: true
     width: 1
-  - name: "scan_loopback_fifo_full"
-    read: true
-    write: false 
-    width: 1
-  - name: "scan_loopback_fifo_empty"
+  - name: "scan_loopback_valid"
     read: true
     write: false 
     width: 1
