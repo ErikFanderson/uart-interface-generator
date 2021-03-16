@@ -184,14 +184,6 @@ uart.fields:
     width: 7
 - name: SCAN_IN_INST_CTRL
   registers:
-  - name: "scan_in_write_frame_valid_pulse"
-    read: true
-    write: true
-    width: 1 
-  - name: "scan_in_write_frame_address"
-    read: true
-    write: true
-    width: 5
   - name: "scan_in_inst_valid"
     read: true
     write: true
@@ -204,6 +196,14 @@ uart.fields:
     read: true
     write: false
     width: 1
+  - name: "scan_in_write_frame_valid_pulse"
+    read: true
+    write: true
+    width: 1 
+  - name: "scan_in_write_frame_address"
+    read: true
+    write: true
+    width: 5
 - name: SCAN_LOOPBACK_DATA
   registers:
   - name: "scan_loopback_data_0"

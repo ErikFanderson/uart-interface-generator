@@ -46,7 +46,7 @@ class UARTIFaceTool(JinjaTool):
                 self.uart["fields"][i]["address_buffer"] = 0
 
     def steps(self):
-        return [self.populate_database, self.call_mem_map, self.gen_python_hal, self.gen_uart_module]
+        return [self.populate_database, self.call_mem_map, self.gen_python_hal, self.gen_verilog_tasks, self.gen_uart_module]
 
     def call_mem_map(self):
         """Just calls the memory map script in asic utils"""
@@ -125,6 +125,15 @@ class UARTIFaceTool(JinjaTool):
     
     def gen_python_hal(self):
         template = "UARTDriver.py"
+        dest = os.path.join(self.get_db("internal.job_dir"), template)
+        self.render_to_file(template, dest, fields=self.fields)
+    
+    #--------------------------------------------------------------------------
+    # Generate verilog bfm 
+    #--------------------------------------------------------------------------
+    
+    def gen_verilog_tasks(self):
+        template = "uart_tasks.svh"
         dest = os.path.join(self.get_db("internal.job_dir"), template)
         self.render_to_file(template, dest, fields=self.fields)
 
