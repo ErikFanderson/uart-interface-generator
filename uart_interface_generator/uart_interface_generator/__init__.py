@@ -143,8 +143,6 @@ class UARTIFaceTool(JinjaTool):
     def gen_verilog_tasks(self):
         template = "uart_tasks.svh"
         dest = os.path.join(self.get_db("internal.job_dir"), template)
-        for rname, rdict in self.fields["SCAN_IN_INST_CTRL"]["registers"].items():
-            print(f"{rname}: {rdict}")
         self.render_to_file(template, dest, fields=self.fields)
 
     #--------------------------------------------------------------------------
