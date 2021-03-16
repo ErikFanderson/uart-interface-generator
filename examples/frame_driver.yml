@@ -1,4 +1,4 @@
-uart.name: ssp1_fpga_uart
+uart.name: frame_driver_uart 
 uart.fields:
 - name: SCAN_IN_ADDRESS_DATA
   registers:
@@ -184,7 +184,15 @@ uart.fields:
     width: 7
 - name: SCAN_IN_INST_CTRL
   registers:
-  - name: "scan_in_inst_valid_pulse"
+  - name: "scan_in_write_frame_valid_pulse"
+    read: true
+    write: true
+    width: 1 
+  - name: "scan_in_write_frame_address"
+    read: true
+    write: true
+    width: 5
+  - name: "scan_in_inst_valid"
     read: true
     write: true
     width: 1

@@ -24,6 +24,9 @@ jobs.uart_led.description: "Generate uart interface for uart_led example"
 jobs.ssp1_fpga.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_fpga.yml"]}]
 jobs.ssp1_fpga.description: "Generate uart interface for superswitch phase 1 fpga driver"
 
+jobs.frame_driver.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/frame_driver.yml"]}]
+jobs.frame_driver.description: "Generate uart interface for superswitch phase 1 frame fpga driver"
+
 jobs.test.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/test.yml"]}]
 jobs.test.description: "Just for testing"
 #------------------------------------------------------------------------------

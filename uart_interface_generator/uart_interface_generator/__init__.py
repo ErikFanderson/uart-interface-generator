@@ -57,7 +57,6 @@ class UARTIFaceTool(JinjaTool):
             fp.write(yaml.dump(self.uart))
         self.log(f"Generated config file for vlog-mem-map: {rel_out_fpath}")
         self.bin.add_option("config.yml")
-        print(self.bin.get_execute_string())
         self.bin.execute(self.get_db("internal.job_dir"))
     
     #--------------------------------------------------------------------------

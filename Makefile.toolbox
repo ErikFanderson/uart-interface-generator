@@ -23,6 +23,14 @@ ssp1_fpga:
 #----------------------------------------------------------
 
 #----------------------------------------------------------
+# Target "frame_driver" 
+#----------------------------------------------------------
+frame_driver: 
+	toolbox-cli --color -l info -b build -o toolbox frame_driver	
+.PHONY: frame_driver
+#----------------------------------------------------------
+
+#----------------------------------------------------------
 # Target "test" 
 #----------------------------------------------------------
 test: 
@@ -37,10 +45,11 @@ list:
 	@echo "#--------------------------------------------------------------------"
 	@echo "# Toolbox generated make targets"
 	@echo "#--------------------------------------------------------------------"
-	@echo "build        Generates a Makefile w/ all jobs as targets"
-	@echo "uart_led     Generate uart interface for uart_led example"
-	@echo "ssp1_fpga    Generate uart interface for superswitch phase 1 fpga driver"
-	@echo "test         Just for testing"
+	@echo "build           Generates a Makefile w/ all jobs as targets"
+	@echo "uart_led        Generate uart interface for uart_led example"
+	@echo "ssp1_fpga       Generate uart interface for superswitch phase 1 fpga driver"
+	@echo "frame_driver    Generate uart interface for superswitch phase 1 frame fpga driver"
+	@echo "test            Just for testing"
 	@echo "#--------------------------------------------------------------------"
 .PHONY: list 
 #----------------------------------------------------------
