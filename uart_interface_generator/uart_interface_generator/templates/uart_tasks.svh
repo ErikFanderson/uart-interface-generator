@@ -20,6 +20,7 @@
 task read_all_bytes(input [6:0] start_address, end_address, output [999:0] data);
     logic [7:0] read_byte;
     begin
+        data = '0;
         for (i = 0; i <= (end_address - start_address); i = i + 1) begin
             read(start_address + i, read_byte);
             data[8*i +: 8] = read_byte;
@@ -38,7 +39,7 @@ task read_FIELD_{{fname}}_REG_{{rname}}(output [999:0] data);
     logic [999:0] rdata;
     begin
         read_all_bytes({{rdict.lsbit_address}}, {{rdict.msbit_address}}, rdata);
-        data = {% raw %}{{{% endraw %}{{1000 - rdict.width}}{% raw %}{{% endraw %}1'b0{% raw %}}}{% endraw %}, data[{{((rdict.msbit_address - rdict.lsbit_address) * 8) + rdict.msbit_address_bit_position}}:{{rdict.lsbit_address_bit_position}}]};
+        data = {% raw %}{{{% endraw %}{{1000 - rdict.width}}{% raw %}{{% endraw %}1'b0{% raw %}}}{% endraw %}, rdata[{{((rdict.msbit_address - rdict.lsbit_address) * 8) + rdict.msbit_address_bit_position}}:{{rdict.lsbit_address_bit_position}}]};
     end
 endtask
 

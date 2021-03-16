@@ -74,7 +74,15 @@ class UARTIFaceTool(JinjaTool):
         for field in self.uart["fields"]:
             fields[field["name"]] = {"registers": {}}
             field_width = 0
+            ordered_reg = [] 
+            # Organize write registers first and then read (TODO maybe fix this)
             for reg in field["registers"]:
+                if reg["write"]:
+                    ordered_reg.append(reg)
+            for reg in field["registers"]:
+                if not reg["write"]:
+                    ordered_reg.append(reg)
+            for reg in ordered_reg:
                 fields[field["name"]]["registers"][reg["name"]] = {}
                 fields[field["name"]]["registers"][reg["name"]]["write"] = reg["write"]
                 fields[field["name"]]["registers"][reg["name"]]["width"] = reg["width"] 
@@ -135,6 +143,8 @@ class UARTIFaceTool(JinjaTool):
     def gen_verilog_tasks(self):
         template = "uart_tasks.svh"
         dest = os.path.join(self.get_db("internal.job_dir"), template)
+        for rname, rdict in self.fields["SCAN_IN_INST_CTRL"]["registers"].items():
+            print(f"{rname}: {rdict}")
         self.render_to_file(template, dest, fields=self.fields)
 
     #--------------------------------------------------------------------------
