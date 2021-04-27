@@ -1,0 +1,78 @@
+uart.name: uart_i2c_user_clock 
+uart.fields:
+- name: LED 
+  registers:
+  - name: "leds"
+    read: true
+    write: true
+    width: 8 
+- name: RESET 
+  registers:
+  - name: "reset"
+    read: true
+    write: true
+    width: 1
+- name: I2C_RV0 
+  registers:
+  - name: "valid"
+    read: true
+    write: true
+    width: 1 
+  - name: "ready"
+    read: true
+    write: false 
+    width: 1
+  - name: "slave_address"
+    read: true
+    write: true
+    width: 7 
+  - name: "reg_address"
+    read: true
+    write: true
+    width: 8 
+  - name: "wdata0"
+    read: true
+    write: true
+    width: 8 
+  - name: "wdata1"
+    read: true
+    write: true
+    width: 8 
+  - name: "wdata2"
+    read: true
+    write: true
+    width: 8 
+  - name: "wdata3"
+    read: true
+    write: true
+    width: 8
+  - name: "rd_wrn"
+    read: true
+    write: true
+    width: 1 
+- name: I2C_RV1
+  registers:
+  - name: "valid"
+    read: true
+    write: false 
+    width: 1 
+  - name: "ready"
+    read: true
+    write: true 
+    width: 1 
+  - name: "rdata0"
+    read: true
+    write: false
+    width: 8 
+  - name: "wdata1"
+    read: true
+    write: false
+    width: 8 
+  - name: "wdata2"
+    read: true
+    write: false
+    width: 8 
+  - name: "wdata3"
+    read: true
+    write: false
+    width: 8

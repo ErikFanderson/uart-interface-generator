@@ -1,4 +1,21 @@
 #----------------------------------------------------------
+# Target "list" - lists all found jobs
+#----------------------------------------------------------
+list:
+	@echo "#--------------------------------------------------------------------"
+	@echo "# Toolbox generated make targets"
+	@echo "#--------------------------------------------------------------------"
+	@echo "build             Generates a Makefile w/ all jobs as targets"
+	@echo "uart_led          Generate uart interface for uart_led example"
+	@echo "ssp1_fpga         Generate uart interface for superswitch phase 1 fpga driver"
+	@echo "frame_driver      Generate uart interface for superswitch phase 1 frame fpga driver"
+	@echo "i2c_user_clock    VC707 uart controlled i2c master"
+	@echo "test              Just for testing"
+	@echo "#--------------------------------------------------------------------"
+.PHONY: list 
+#----------------------------------------------------------
+
+#----------------------------------------------------------
 # Target "build" 
 #----------------------------------------------------------
 build: 
@@ -31,6 +48,14 @@ frame_driver:
 #----------------------------------------------------------
 
 #----------------------------------------------------------
+# Target "i2c_user_clock" 
+#----------------------------------------------------------
+i2c_user_clock: 
+	toolbox-cli --color -l info -b build -o toolbox i2c_user_clock	
+.PHONY: i2c_user_clock
+#----------------------------------------------------------
+
+#----------------------------------------------------------
 # Target "test" 
 #----------------------------------------------------------
 test: 
@@ -38,18 +63,3 @@ test:
 .PHONY: test
 #----------------------------------------------------------
 
-#----------------------------------------------------------
-# Target "list" - lists all found jobs
-#----------------------------------------------------------
-list:
-	@echo "#--------------------------------------------------------------------"
-	@echo "# Toolbox generated make targets"
-	@echo "#--------------------------------------------------------------------"
-	@echo "build           Generates a Makefile w/ all jobs as targets"
-	@echo "uart_led        Generate uart interface for uart_led example"
-	@echo "ssp1_fpga       Generate uart interface for superswitch phase 1 fpga driver"
-	@echo "frame_driver    Generate uart interface for superswitch phase 1 frame fpga driver"
-	@echo "test            Just for testing"
-	@echo "#--------------------------------------------------------------------"
-.PHONY: list 
-#----------------------------------------------------------
