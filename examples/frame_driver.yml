@@ -276,3 +276,73 @@ uart.fields:
     read: true
     write: false 
     width: 1
+- name: I2C
+  registers:
+  - name: "rv0_valid_pulse"
+    read: true
+    write: true
+    width: 1 
+  - name: "rv0_ready"
+    read: true
+    write: false 
+    width: 1
+  - name: "rv0_slave_address"
+    read: true
+    write: true
+    width: 7 
+  - name: "rv0_burst_count_wr"
+    read: true
+    write: true
+    width: 2 
+  - name: "rv0_burst_count_rd"
+    read: true
+    write: true
+    width: 2 
+  - name: "rv0_wdata0"
+    read: true
+    write: true
+    width: 8 
+  - name: "rv0_wdata1"
+    read: true
+    write: true
+    width: 8 
+  - name: "rv0_wdata2"
+    read: true
+    write: true
+    width: 8 
+  - name: "rv0_wdata3"
+    read: true
+    write: true
+    width: 8
+  - name: "rv0_rd_wrn"
+    read: true
+    write: true
+    width: 1 
+  - name: "rv1_valid"
+    read: true
+    write: false 
+    width: 1 
+  - name: "rv1_ready"
+    read: true
+    write: true 
+    width: 1 
+  - name: "rv1_nack"
+    read: true
+    write: false 
+    width: 1 
+  - name: "rv1_rdata0"
+    read: true
+    write: false
+    width: 8 
+  - name: "rv1_rdata1"
+    read: true
+    write: false
+    width: 8 
+  - name: "rv1_rdata2"
+    read: true
+    write: false
+    width: 8 
+  - name: "rv1_rdata3"
+    read: true
+    write: false
+    width: 8
