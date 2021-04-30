@@ -24,8 +24,8 @@ jobs.uart_led.description: "Generate uart interface for uart_led example"
 jobs.ssp1_fpga.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_fpga.yml"]}]
 jobs.ssp1_fpga.description: "Generate uart interface for superswitch phase 1 fpga driver"
 
-jobs.frame_driver.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/frame_driver.yml"]}]
-jobs.frame_driver.description: "Generate uart interface for superswitch phase 1 frame fpga driver"
+jobs.ssp1_frame_driver.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/frame_driver.yml"]}]
+jobs.ssp1_frame_driver.description: "Generate uart interface for superswitch phase 1 frame fpga driver"
 
 jobs.i2c_user_clock.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/i2c_user_clock.yml"]}]
 jobs.i2c_user_clock.description: "VC707 uart controlled i2c master"

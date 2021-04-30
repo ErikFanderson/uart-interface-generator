@@ -5,12 +5,12 @@ list:
 	@echo "#--------------------------------------------------------------------"
 	@echo "# Toolbox generated make targets"
 	@echo "#--------------------------------------------------------------------"
-	@echo "build             Generates a Makefile w/ all jobs as targets"
-	@echo "uart_led          Generate uart interface for uart_led example"
-	@echo "ssp1_fpga         Generate uart interface for superswitch phase 1 fpga driver"
-	@echo "frame_driver      Generate uart interface for superswitch phase 1 frame fpga driver"
-	@echo "i2c_user_clock    VC707 uart controlled i2c master"
-	@echo "test              Just for testing"
+	@echo "build                Generates a Makefile w/ all jobs as targets"
+	@echo "uart_led             Generate uart interface for uart_led example"
+	@echo "ssp1_fpga            Generate uart interface for superswitch phase 1 fpga driver"
+	@echo "ssp1_frame_driver    Generate uart interface for superswitch phase 1 frame fpga driver"
+	@echo "i2c_user_clock       VC707 uart controlled i2c master"
+	@echo "test                 Just for testing"
 	@echo "#--------------------------------------------------------------------"
 .PHONY: list 
 #----------------------------------------------------------
@@ -40,11 +40,11 @@ ssp1_fpga:
 #----------------------------------------------------------
 
 #----------------------------------------------------------
-# Target "frame_driver" 
+# Target "ssp1_frame_driver" 
 #----------------------------------------------------------
-frame_driver: 
-	toolbox-cli --color -l info -b build -o toolbox frame_driver	
-.PHONY: frame_driver
+ssp1_frame_driver: 
+	toolbox-cli --color -l info -b build -o toolbox ssp1_frame_driver	
+.PHONY: ssp1_frame_driver
 #----------------------------------------------------------
 
 #----------------------------------------------------------
