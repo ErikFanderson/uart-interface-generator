@@ -12,6 +12,10 @@ uart.fields:
     read: true
     write: true
     width: 1
+  - name: "i2c_rst_n"
+    read: true
+    write: true
+    width: 1
 - name: I2C
   registers:
   - name: "rv0_valid_pulse"

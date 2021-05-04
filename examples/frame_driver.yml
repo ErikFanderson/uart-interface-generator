@@ -278,11 +278,11 @@ uart.fields:
     width: 1
 - name: I2C
   registers:
-  - name: "rv0_valid_pulse"
+  - name: "rv0_req"
     read: true
     write: true
     width: 1 
-  - name: "rv0_ready"
+  - name: "rv0_ack"
     read: true
     write: false 
     width: 1
@@ -318,11 +318,11 @@ uart.fields:
     read: true
     write: true
     width: 1 
-  - name: "rv1_valid"
+  - name: "rv1_req"
     read: true
     write: false 
     width: 1 
-  - name: "rv1_ready"
+  - name: "rv1_ack"
     read: true
     write: true 
     width: 1 
