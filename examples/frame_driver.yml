@@ -278,71 +278,63 @@ uart.fields:
     width: 1
 - name: I2C
   registers:
-  - name: "rv0_req"
+  - name: "i2c_req"
     read: true
     write: true
     width: 1 
-  - name: "rv0_ack"
+  - name: "i2c_ack"
     read: true
     write: false 
     width: 1
-  - name: "rv0_slave_address"
+  - name: "i2c_slave_address"
     read: true
     write: true
     width: 7 
-  - name: "rv0_burst_count_wr"
+  - name: "i2c_burst_count_wr"
     read: true
     write: true
     width: 2 
-  - name: "rv0_burst_count_rd"
+  - name: "i2c_burst_count_rd"
     read: true
     write: true
     width: 2 
-  - name: "rv0_wdata0"
+  - name: "i2c_wdata0"
     read: true
     write: true
     width: 8 
-  - name: "rv0_wdata1"
+  - name: "i2c_wdata1"
     read: true
     write: true
     width: 8 
-  - name: "rv0_wdata2"
+  - name: "i2c_wdata2"
     read: true
     write: true
     width: 8 
-  - name: "rv0_wdata3"
+  - name: "i2c_wdata3"
     read: true
     write: true
     width: 8
-  - name: "rv0_rd_wrn"
+  - name: "i2c_rd_wrn"
     read: true
     write: true
     width: 1 
-  - name: "rv1_req"
+  - name: "i2c_nack"
     read: true
     write: false 
     width: 1 
-  - name: "rv1_ack"
-    read: true
-    write: true 
-    width: 1 
-  - name: "rv1_nack"
-    read: true
-    write: false 
-    width: 1 
-  - name: "rv1_rdata0"
+  - name: "i2c_rdata0"
     read: true
     write: false
     width: 8 
-  - name: "rv1_rdata1"
+  - name: "i2c_rdata1"
     read: true
     write: false
     width: 8 
-  - name: "rv1_rdata2"
+  - name: "i2c_rdata2"
     read: true
     write: false
     width: 8 
-  - name: "rv1_rdata3"
+  - name: "i2c_rdata3"
     read: true
     write: false
     width: 8
