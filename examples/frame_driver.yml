@@ -242,6 +242,10 @@ uart.fields:
     read: true
     write: false
     width: 32
+  - name: "shifter_oe_n"
+    read: true
+    write: true 
+    width: 1 
 - name: DUMMY_SCAN_SEG_OUT 
   registers:
   - name: "dummy_scan_seg_out_0"
