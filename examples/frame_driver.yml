@@ -246,6 +246,10 @@ uart.fields:
     read: true
     write: true 
     width: 1 
+  - name: "scan_cg_en"
+    read: true
+    write: true 
+    width: 1 
 - name: DUMMY_SCAN_SEG_OUT 
   registers:
   - name: "dummy_scan_seg_out_0"
