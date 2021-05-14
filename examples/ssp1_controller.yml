@@ -1,0 +1,752 @@
+uart.name: ssp1_controller_uart
+uart.fields:
+- name: RESET 
+  registers:
+  - name: "reset"
+    read: true
+    write: true
+    width: 1
+- name: USER 
+  registers:
+  - name: "leds"
+    read: true
+    write: true
+    width: 8 
+  - name: "shifter_oe_n"
+    read: true
+    write: true 
+    width: 1 
+- name: SCAN_IN_ADDRESS_0
+  registers:
+  - name: "scan_in_addr_address_0"
+    read: true
+    write: true
+    width: 2 
+  - name: "scan_in_addr_lb_sel_0"
+    read: true
+    write: true
+    width: 4 
+  - name: "scan_in_addr_enable_0"
+    read: true
+    write: true
+    width: 1 
+  - name: "scan_in_addr_req_0"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_addr_ack_0"
+    read: true
+    write: false
+    width: 1
+  - name: "scan_in_addr_cmd_0"
+    read: true
+    write: true
+    width: 2
+- name: SCAN_IN_ADDRESS_1
+  registers:
+  - name: "scan_in_addr_address_1"
+    read: true
+    write: true
+    width: 2
+  - name: "scan_in_addr_lb_sel_1"
+    read: true
+    write: true
+    width: 4
+  - name: "scan_in_addr_enable_1"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_addr_req_1"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_addr_ack_1"
+    read: true
+    write: false
+    width: 1
+  - name: "scan_in_addr_cmd_1"
+    read: true
+    write: true
+    width: 2
+- name: SCAN_IN_ADDRESS_2
+  registers:
+  - name: "scan_in_addr_address_2"
+    read: true
+    write: true
+    width: 2
+  - name: "scan_in_addr_lb_sel_2"
+    read: true
+    write: true
+    width: 4
+  - name: "scan_in_addr_enable_2"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_addr_req_2"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_addr_ack_2"
+    read: true
+    write: false
+    width: 1
+  - name: "scan_in_addr_cmd_2"
+    read: true
+    write: true
+    width: 2
+- name: SCAN_IN_ADDRESS_3
+  registers:
+  - name: "scan_in_addr_address_3"
+    read: true
+    write: true
+    width: 2
+  - name: "scan_in_addr_lb_sel_3"
+    read: true
+    write: true
+    width: 4
+  - name: "scan_in_addr_enable_3"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_addr_req_3"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_addr_ack_3"
+    read: true
+    write: false
+    width: 1
+  - name: "scan_in_addr_cmd_3"
+    read: true
+    write: true
+    width: 2
+- name: SCAN_IN_INST_0
+  registers:
+  - name: "scan_in_inst_0_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_1_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_2_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_3_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_4_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_5_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_6_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_7_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_8_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_9_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_10_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_11_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_12_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_13_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_14_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_15_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_16_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_17_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_18_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_19_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_20_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_21_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_22_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_23_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_24_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_25_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_26_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_27_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_28_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_29_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_30_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_31_data_0"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_req_0"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_inst_ack_0"
+    read: true
+    write: false
+    width: 1
+  - name: "scan_in_inst_cmd_0"
+    read: true
+    write: true
+    width: 2
+- name: SCAN_IN_INST_1
+  registers:
+  - name: "scan_in_inst_0_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_1_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_2_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_3_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_4_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_5_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_6_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_7_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_8_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_9_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_10_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_11_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_12_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_13_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_14_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_15_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_16_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_17_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_18_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_19_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_20_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_21_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_22_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_23_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_24_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_25_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_26_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_27_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_28_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_29_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_30_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_31_data_1"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_req_1"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_inst_ack_1"
+    read: true
+    write: false
+    width: 1
+  - name: "scan_in_inst_cmd_1"
+    read: true
+    write: true
+    width: 2
+- name: SCAN_IN_INST_2
+  registers:
+  - name: "scan_in_inst_0_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_1_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_2_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_3_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_4_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_5_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_6_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_7_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_8_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_9_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_10_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_11_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_12_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_13_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_14_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_15_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_16_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_17_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_18_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_19_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_20_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_21_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_22_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_23_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_24_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_25_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_26_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_27_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_28_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_29_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_30_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_31_data_2"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_req_2"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_inst_ack_2"
+    read: true
+    write: false
+    width: 1
+  - name: "scan_in_inst_cmd_2"
+    read: true
+    write: true
+    width: 2
+- name: SCAN_IN_INST_3
+  registers:
+  - name: "scan_in_inst_0_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_1_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_2_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_3_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_4_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_5_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_6_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_7_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_8_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_9_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_10_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_11_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_12_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_13_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_14_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_15_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_16_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_17_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_18_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_19_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_20_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_21_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_22_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_23_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_24_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_25_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_26_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_27_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_28_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_29_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_30_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_31_data_3"
+    read: true
+    write: true
+    width: 7
+  - name: "scan_in_inst_req_3"
+    read: true
+    write: true
+    width: 1
+  - name: "scan_in_inst_ack_3"
+    read: true
+    write: false
+    width: 1
+  - name: "scan_in_inst_cmd_3"
+    read: true
+    write: true
+    width: 2
+- name: I2C
+  registers:
+  - name: "i2c_req"
+    read: true
+    write: true
+    width: 1 
+  - name: "i2c_ack"
+    read: true
+    write: false 
+    width: 1
+  - name: "i2c_slave_address"
+    read: true
+    write: true
+    width: 7 
+  - name: "i2c_burst_count_wr"
+    read: true
+    write: true
+    width: 2 
+  - name: "i2c_burst_count_rd"
+    read: true
+    write: true
+    width: 2 
+  - name: "i2c_wdata0"
+    read: true
+    write: true
+    width: 8 
+  - name: "i2c_wdata1"
+    read: true
+    write: true
+    width: 8 
+  - name: "i2c_wdata2"
+    read: true
+    write: true
+    width: 8 
+  - name: "i2c_wdata3"
+    read: true
+    write: true
+    width: 8
+  - name: "i2c_rd_wrn"
+    read: true
+    write: true
+    width: 1 
+  - name: "i2c_nack"
+    read: true
+    write: false 
+    width: 1 
+  - name: "i2c_rdata0"
+    read: true
+    write: false
+    width: 8 
+  - name: "i2c_rdata1"
+    read: true
+    write: false
+    width: 8 
+  - name: "i2c_rdata2"
+    read: true
+    write: false
+    width: 8 
+  - name: "i2c_rdata3"
+    read: true
+    write: false
+    width: 8

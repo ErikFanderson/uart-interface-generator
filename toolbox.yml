@@ -30,6 +30,9 @@ jobs.ssp1_frame_driver.description: "Generate uart interface for superswitch pha
 jobs.i2c_user_clock.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/i2c_user_clock.yml"]}]
 jobs.i2c_user_clock.description: "VC707 uart controlled i2c master"
 
+jobs.ssp1_controller.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_controller.yml"]}]
+jobs.ssp1_controller.description: "Full controller for SSP1"
+
 jobs.test.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/test.yml"]}]
 jobs.test.description: "Just for testing"
 #------------------------------------------------------------------------------

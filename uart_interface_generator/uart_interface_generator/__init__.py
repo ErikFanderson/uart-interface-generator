@@ -161,6 +161,7 @@ class UARTIFaceTool(JinjaTool):
         uart_module.add_port(Port("i_uart_rx", IO.INPUT, DataType.WIRE))
         uart_module.add_port(Port("o_uart_rts_n", IO.OUTPUT, DataType.WIRE))
         uart_module.add_port(Port("i_uart_cts_n", IO.INPUT, DataType.WIRE))
+        names = []
         for field in self.uart["fields"]:
             for reg in field["registers"]:
                 if reg["write"]:
@@ -169,6 +170,10 @@ class UARTIFaceTool(JinjaTool):
                 else:
                     p = Port(f"i_mem_{reg['name']}", IO.INPUT, DataType.WIRE,
                              Vec(Range(reg["width"] - 1, 0)))
+                if reg["name"] in names:
+                    self.log(f'Duplicate register name "{reg["name"]}". Must have unique register names.', LogLevel.ERROR)
+                    sys.exit()
+                names.append(reg["name"])
                 uart_module.add_port(p)
 
         # Add signals to top module
