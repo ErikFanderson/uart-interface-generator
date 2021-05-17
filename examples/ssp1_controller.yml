@@ -16,6 +16,28 @@ uart.fields:
     read: true
     write: true 
     width: 1 
+  - name: "scan_cg_en"
+    read: true
+    write: true 
+    width: 1 
+- name: LOOPBACK 
+  registers:
+  - name: "loopback_so_data_0"
+    read: true
+    write: false
+    width: 7
+  - name: "loopback_so_data_1"
+    read: true
+    write: false
+    width: 7
+  - name: "loopback_so_data_2"
+    read: true
+    write: false
+    width: 7
+  - name: "loopback_so_data_3"
+    read: true
+    write: false
+    width: 7
 - name: SCAN_IN_ADDRESS_0
   registers:
   - name: "scan_in_addr_address_0"
