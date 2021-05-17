@@ -66,6 +66,13 @@ class UARTIFaceTool(JinjaTool):
     def populate_database(self):
         self.db = self.generate_memory_map_database()
         self.fields = self.generate_fields()
+        # Check to make sure that we are within the current 7-bit address limit
+        max_addr = self.db["fields"][-1]["registers"][-1]["msbit_address"]
+        if max_addr >= (1 << self.uart["address_width"]):
+            self.log(f'Maximum address "{max_addr}" is too large (i.e. >= {1 << self.uart["address_width"]})', LogLevel.ERROR)
+            sys.exit()
+        else:
+            self.log(f'Maximum address: "{max_addr}"', LogLevel.INFO)
     
     def generate_fields(self):
         """Creates memory map database"""
