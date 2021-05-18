@@ -1,13 +1,13 @@
 //------------------------------------------------------------------------------
 // Basic read and write methods 
 //------------------------------------------------------------------------------
-//task write(input [6:0] address, input [7:0] data);
+//task write(input [{{address_width - 1}}:0] address, input [7:0] data);
 //    begin
 //        // TODO Implement me - Write address byte (MSb = 0, lower bits are address)
 //    end
 //endtask
 //
-//task read(input [6:0] address, output [7:0] data);
+//task read(input [{{address_width - 1}}:0] address, output [7:0] data);
 //    begin
 //        // TODO implement me - Write address byte (MSb = 1, lower bits are address)
 //    end

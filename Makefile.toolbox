@@ -6,12 +6,13 @@ list:
 	@echo "# Toolbox generated make targets"
 	@echo "#--------------------------------------------------------------------"
 	@echo "build                Generates a Makefile w/ all jobs as targets"
-	@echo "uart_led             Generate uart interface for uart_led example"
-	@echo "ssp1_fpga            Generate uart interface for superswitch phase 1 fpga driver"
-	@echo "ssp1_frame_driver    Generate uart interface for superswitch phase 1 frame fpga driver"
-	@echo "i2c_user_clock       VC707 uart controlled i2c master"
-	@echo "ssp1_controller      Full controller for SSP1"
 	@echo "test                 Just for testing"
+	@echo "uart_led             Generate uart interface for uart_led example"
+	@echo "i2c_user_clock       VC707 uart controlled i2c master"
+	@echo "ssp1_cmos            Generate uart interface for superswitch phase 1 driver for 1 cmos chiplet"
+	@echo "ssp1_frame_driver    Generate uart interface for superswitch phase 1 frame fpga driver"
+	@echo "ssp1_controller      Full controller for SSP1"
+	@echo "clean                Cleans directory"
 	@echo "#--------------------------------------------------------------------"
 .PHONY: list 
 #----------------------------------------------------------
@@ -25,27 +26,19 @@ build:
 #----------------------------------------------------------
 
 #----------------------------------------------------------
+# Target "test" 
+#----------------------------------------------------------
+test: 
+	toolbox-cli --color -l info -b build -o toolbox test	
+.PHONY: test
+#----------------------------------------------------------
+
+#----------------------------------------------------------
 # Target "uart_led" 
 #----------------------------------------------------------
 uart_led: 
 	toolbox-cli --color -l info -b build -o toolbox uart_led	
 .PHONY: uart_led
-#----------------------------------------------------------
-
-#----------------------------------------------------------
-# Target "ssp1_fpga" 
-#----------------------------------------------------------
-ssp1_fpga: 
-	toolbox-cli --color -l info -b build -o toolbox ssp1_fpga	
-.PHONY: ssp1_fpga
-#----------------------------------------------------------
-
-#----------------------------------------------------------
-# Target "ssp1_frame_driver" 
-#----------------------------------------------------------
-ssp1_frame_driver: 
-	toolbox-cli --color -l info -b build -o toolbox ssp1_frame_driver	
-.PHONY: ssp1_frame_driver
 #----------------------------------------------------------
 
 #----------------------------------------------------------
@@ -57,6 +50,22 @@ i2c_user_clock:
 #----------------------------------------------------------
 
 #----------------------------------------------------------
+# Target "ssp1_cmos" 
+#----------------------------------------------------------
+ssp1_cmos: 
+	toolbox-cli --color -l info -b build -o toolbox ssp1_cmos	
+.PHONY: ssp1_cmos
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "ssp1_frame_driver" 
+#----------------------------------------------------------
+ssp1_frame_driver: 
+	toolbox-cli --color -l info -b build -o toolbox ssp1_frame_driver	
+.PHONY: ssp1_frame_driver
+#----------------------------------------------------------
+
+#----------------------------------------------------------
 # Target "ssp1_controller" 
 #----------------------------------------------------------
 ssp1_controller: 
@@ -65,10 +74,10 @@ ssp1_controller:
 #----------------------------------------------------------
 
 #----------------------------------------------------------
-# Target "test" 
+# Target "clean" 
 #----------------------------------------------------------
-test: 
-	toolbox-cli --color -l info -b build -o toolbox test	
-.PHONY: test
+clean: 
+	rm -rf build *.log __pycache__	
+.PHONY: clean
 #----------------------------------------------------------
 

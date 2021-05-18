@@ -18,23 +18,30 @@ tools:
 jobs.build.tasks: [{tool: Make}]
 jobs.build.description: "Generates a Makefile w/ all jobs as targets"
 
+jobs.test.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/test.yml"]}]
+jobs.test.description: "Just for testing"
+
 jobs.uart_led.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/uart_led.yml"]}]
 jobs.uart_led.description: "Generate uart interface for uart_led example"
-
-jobs.ssp1_fpga.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_fpga.yml"]}]
-jobs.ssp1_fpga.description: "Generate uart interface for superswitch phase 1 fpga driver"
-
-jobs.ssp1_frame_driver.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/frame_driver.yml"]}]
-jobs.ssp1_frame_driver.description: "Generate uart interface for superswitch phase 1 frame fpga driver"
 
 jobs.i2c_user_clock.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/i2c_user_clock.yml"]}]
 jobs.i2c_user_clock.description: "VC707 uart controlled i2c master"
 
+jobs.ssp1_cmos.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_cmos.yml"]}]
+jobs.ssp1_cmos.description: "Generate uart interface for superswitch phase 1 driver for 1 cmos chiplet"
+
+jobs.ssp1_frame_driver.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_frame_driver.yml"]}]
+jobs.ssp1_frame_driver.description: "Generate uart interface for superswitch phase 1 frame fpga driver"
+
 jobs.ssp1_controller.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_controller.yml"]}]
 jobs.ssp1_controller.description: "Full controller for SSP1"
 
-jobs.test.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/test.yml"]}]
-jobs.test.description: "Just for testing"
+make.targets:
+- name: clean
+  description: "Cleans directory"
+  outputs: []
+  dependencies: []
+  commands: ["rm -rf build *.log __pycache__"]
 #------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------

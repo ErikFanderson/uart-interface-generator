@@ -1,4 +1,4 @@
-uart.name: ssp1_fpga_uart
+uart.name: ssp1_cmos_uart
 uart.fields:
 - name: SCAN_IN_ADDRESS_DATA
   registers:
