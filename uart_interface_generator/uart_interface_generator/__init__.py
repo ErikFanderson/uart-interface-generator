@@ -35,12 +35,11 @@ class UARTIFaceTool(JinjaTool):
         self.bin = BinaryDriver("vlog-mem-map")
         self.db = None 
         self.fields = None
-        self.uart["word_width"] = 8
-        self.address_width = 7
         # UART blocks only support word width of 8 and address range of 128 (for now)
-        self.uart["word_width"] = 8
-        self.uart["address_width"] = 7
-        self.uart["address_range"] = 1 << self.uart["address_width"]
+        self.uart["word_width"] = 8 
+        self.uart["address_width"] = None 
+        self.uart["address_cycles"] = None 
+        self.uart["address_range"] = None 
         # Address buffer is not helpful
         for i, field in enumerate(self.uart["fields"]):
                 self.uart["fields"][i]["address_buffer"] = 0
@@ -64,15 +63,27 @@ class UARTIFaceTool(JinjaTool):
     #--------------------------------------------------------------------------
 
     def populate_database(self):
+        # Address buffer is not helpful
+        for i, field in enumerate(self.uart["fields"]):
+                self.uart["fields"][i]["address_buffer"] = 0
+        # Generate map database
         self.db = self.generate_memory_map_database()
         self.fields = self.generate_fields()
-        # Check to make sure that we are within the current 7-bit address limit
+        # Calculate address range
         max_addr = self.db["fields"][-1]["registers"][-1]["msbit_address"]
-        if max_addr >= (1 << self.uart["address_width"]):
-            self.log(f'Maximum address "{max_addr}" is too large (i.e. >= {1 << self.uart["address_width"]})', LogLevel.ERROR)
-            sys.exit()
+        self.uart["address_width"] = math.ceil(math.log2(max_addr))
+        if self.uart["address_width"] < 7:
+            self.uart["address_cycles"] = 1 
+            self.uart["address_width"] = self.uart["word_width"] - 1
         else:
-            self.log(f'Maximum address: "{max_addr}"', LogLevel.INFO)
+            self.uart["address_cycles"] = 1 + math.ceil((self.uart["address_width"] - 7) / 8) 
+            self.uart["address_width"] = self.uart["address_cycles"] * self.uart["word_width"] - 1
+        self.uart["address_range"] = 1 << self.uart["address_width"]
+        self.log(f'Maximum address: {max_addr}', LogLevel.INFO)
+        self.log(f'UART word width: {self.uart["word_width"]}', LogLevel.INFO)
+        self.log(f'UART Address width: {self.uart["address_width"]}', LogLevel.INFO)
+        self.log(f'UART Address range: {self.uart["address_range"]}', LogLevel.INFO)
+        self.log(f'UART cycles for address: Address range: {self.uart["address_cycles"]}', LogLevel.INFO)
     
     def generate_fields(self):
         """Creates memory map database"""
@@ -236,6 +247,7 @@ class UARTIFaceTool(JinjaTool):
 
         # Memory controller inst
         params = [Connection("DataSize", self.uart["word_width"])]
+        params += [Connection("ExtraAddressCycles", self.uart["address_cycles"] - 1)]
         ports = [(Connection("i_clk", "i_clk"))]
         ports.append((Connection("i_rst", "i_rst")))
         ports.append((Connection("i_rx_data", "rx_data")))
