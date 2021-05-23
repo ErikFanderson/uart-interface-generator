@@ -17,7 +17,7 @@
 //------------------------------------------------------------------------------
 // Read all bytes task 
 //------------------------------------------------------------------------------
-task read_all_bytes(input [6:0] start_address, end_address, output [999:0] data);
+task read_all_bytes(input [{{address_width - 1}}:0] start_address, end_address, output [999:0] data);
     logic [7:0] read_byte;
     begin
         data = '0;
