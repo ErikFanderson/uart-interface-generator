@@ -5,14 +5,15 @@ list:
 	@echo "#--------------------------------------------------------------------"
 	@echo "# Toolbox generated make targets"
 	@echo "#--------------------------------------------------------------------"
-	@echo "build                Generates a Makefile w/ all jobs as targets"
-	@echo "test                 Just for testing"
-	@echo "uart_led             Generate uart interface for uart_led example"
-	@echo "i2c_user_clock       VC707 uart controlled i2c master"
-	@echo "ssp1_cmos            Generate uart interface for superswitch phase 1 driver for 1 cmos chiplet"
-	@echo "ssp1_frame_driver    Generate uart interface for superswitch phase 1 frame fpga driver"
-	@echo "ssp1_controller      Full controller for SSP1"
-	@echo "clean                Cleans directory"
+	@echo "build                     Generates a Makefile w/ all jobs as targets"
+	@echo "test                      Just for testing"
+	@echo "uart_led                  Generate uart interface for uart_led example"
+	@echo "i2c_user_clock            VC707 uart controlled i2c master"
+	@echo "ssp1_cmos                 Generate uart interface for superswitch phase 1 driver for 1 cmos chiplet"
+	@echo "ssp1_frame_driver         Generate uart interface for superswitch phase 1 frame fpga driver"
+	@echo "ssp1_controller           Full controller for SSP1"
+	@echo "ssp1_controller_single    Full controller for SSP1 (single column)"
+	@echo "clean                     Cleans directory"
 	@echo "#--------------------------------------------------------------------"
 .PHONY: list 
 #----------------------------------------------------------
@@ -71,6 +72,14 @@ ssp1_frame_driver:
 ssp1_controller: 
 	toolbox-cli --color -l info -b build -o toolbox ssp1_controller	
 .PHONY: ssp1_controller
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "ssp1_controller_single" 
+#----------------------------------------------------------
+ssp1_controller_single: 
+	toolbox-cli --color -l info -b build -o toolbox ssp1_controller_single	
+.PHONY: ssp1_controller_single
 #----------------------------------------------------------
 
 #----------------------------------------------------------

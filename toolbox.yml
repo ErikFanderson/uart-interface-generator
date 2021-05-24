@@ -36,6 +36,9 @@ jobs.ssp1_frame_driver.description: "Generate uart interface for superswitch pha
 jobs.ssp1_controller.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_controller.yml"]}]
 jobs.ssp1_controller.description: "Full controller for SSP1"
 
+jobs.ssp1_controller_single.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_controller_single.yml"]}]
+jobs.ssp1_controller_single.description: "Full controller for SSP1 (single column)"
+
 make.targets:
 - name: clean
   description: "Cleans directory"
