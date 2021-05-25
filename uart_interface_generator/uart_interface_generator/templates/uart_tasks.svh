@@ -42,7 +42,7 @@ task read_FIELD_{{fname}}_REG_{{rname}}(output [999:0] data);
         data = {% raw %}{{{% endraw %}{{1000 - rdict.width}}{% raw %}{{% endraw %}1'b0{% raw %}}}{% endraw %}, rdata[{{((rdict.msbit_address - rdict.lsbit_address) * 8) + rdict.msbit_address_bit_position}}:{{rdict.lsbit_address_bit_position}}]};
     end
 endtask
-
+{% if rdict.write %}
 task write_FIELD_{{fname}}_REG_{{rname}}(input [999:0] data);
     logic [999:0] rdata, wdata;
     begin
@@ -54,6 +54,7 @@ task write_FIELD_{{fname}}_REG_{{rname}}(input [999:0] data);
         end 
     end 
 endtask
+{% endif %}
 {% if not loop.last %}
 
 {% endif %}

@@ -25,10 +25,12 @@ class UARTDriver:
         self._ser.close()
  
     def write_byte(self, address: int, data: int):
-        num_bytes = self._ser.write(bytes([address, data]))
+        addr_bytes = address.to_bytes({{uart["address_cycles"]}}, "big")
+        data_byte = data.to_bytes(1, "big")
+        num_bytes = self._ser.write(addr_bytes + data_byte)
  
     def read_byte(self, address: int) -> int:
-        self._ser.write((address + 128).to_bytes(1, "big"))
+        self._ser.write((address + (128 << {{((uart["address_cycles"] - 1) * 8)}})).to_bytes({{uart["address_cycles"]}}, "big"))
         return int.from_bytes(self._ser.read(), "big")
 
 #-------------------------------------------------------------------------------

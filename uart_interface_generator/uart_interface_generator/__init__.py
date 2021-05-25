@@ -73,17 +73,15 @@ class UARTIFaceTool(JinjaTool):
         max_addr = self.db["fields"][-1]["registers"][-1]["msbit_address"]
         self.uart["address_width"] = math.ceil(math.log2(max_addr))
         if self.uart["address_width"] < 7:
-            self.uart["address_cycles"] = 1 
-            self.uart["address_width"] = self.uart["word_width"] - 1
+            self.uart["address_cycles"] = 1
         else:
-            self.uart["address_cycles"] = 1 + math.ceil((self.uart["address_width"] - 7) / 8) 
-            self.uart["address_width"] = self.uart["address_cycles"] * self.uart["word_width"] - 1
+            self.uart["address_cycles"] = 1 + math.ceil((self.uart["address_width"] - 7) / 8)
         self.uart["address_range"] = 1 << self.uart["address_width"]
         self.log(f'Maximum address: {max_addr}', LogLevel.INFO)
         self.log(f'UART word width: {self.uart["word_width"]}', LogLevel.INFO)
         self.log(f'UART Address width: {self.uart["address_width"]}', LogLevel.INFO)
         self.log(f'UART Address range: {self.uart["address_range"]}', LogLevel.INFO)
-        self.log(f'UART cycles for address: Address range: {self.uart["address_cycles"]}', LogLevel.INFO)
+        self.log(f'UART cycles for address: {self.uart["address_cycles"]}', LogLevel.INFO)
     
     def generate_fields(self):
         """Creates memory map database"""
@@ -152,7 +150,7 @@ class UARTIFaceTool(JinjaTool):
     def gen_python_hal(self):
         template = "UARTDriver.py"
         dest = os.path.join(self.get_db("internal.job_dir"), template)
-        self.render_to_file(template, dest, fields=self.fields)
+        self.render_to_file(template, dest, fields=self.fields, uart=self.uart)
     
     #--------------------------------------------------------------------------
     # Generate verilog bfm 
@@ -247,7 +245,7 @@ class UARTIFaceTool(JinjaTool):
 
         # Memory controller inst
         params = [Connection("DataSize", self.uart["word_width"])]
-        params += [Connection("ExtraAddressCycles", self.uart["address_cycles"] - 1)]
+        params += [Connection("AddressSize", self.uart["address_width"])]
         ports = [(Connection("i_clk", "i_clk"))]
         ports.append((Connection("i_rst", "i_rst")))
         ports.append((Connection("i_rx_data", "rx_data")))
