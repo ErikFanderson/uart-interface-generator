@@ -33,7 +33,7 @@ class UARTDriver:
     def read_byte(self, address: int) -> int:
         addr_bin = f'1{address:0{{uart["address_width"]}}b}'
         addr_bin += "0" * {{(uart["address_cycles"] * 8) - 1 - uart["address_width"]}}
-        self._ser.write(int(bytes_bin, 2).to_bytes({{uart["address_cycles"]}}, "big"))
+        self._ser.write(int(addr_bin, 2).to_bytes({{uart["address_cycles"]}}, "big"))
         return int.from_bytes(self._ser.read(), "big")
 
 #-------------------------------------------------------------------------------
