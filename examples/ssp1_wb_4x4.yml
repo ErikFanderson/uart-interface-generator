@@ -12,7 +12,7 @@ uart.fields:
     read: true
     write: true
     width: 8 
-  - name: "shifter_oe_n"
+  - name: "shifter_oe"
     read: true
     write: true 
     width: 1 
