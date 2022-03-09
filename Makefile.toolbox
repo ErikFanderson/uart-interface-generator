@@ -14,6 +14,7 @@ list:
 	@echo "ssp1_controller           Full controller for SSP1"
 	@echo "ssp1_controller_single    Full controller for SSP1 (single column)"
 	@echo "ssp1_wb_4x4               Controller for SSP1 4x4 WB Package"
+	@echo "uart_fmc                  UART write/read control for full 40 * 10 FMC pinout"
 	@echo "clean                     Cleans directory"
 	@echo "#--------------------------------------------------------------------"
 .PHONY: list 
@@ -89,6 +90,14 @@ ssp1_controller_single:
 ssp1_wb_4x4: 
 	toolbox-cli --color -l info -b build -o toolbox ssp1_wb_4x4	
 .PHONY: ssp1_wb_4x4
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "uart_fmc" 
+#----------------------------------------------------------
+uart_fmc: 
+	toolbox-cli --color -l info -b build -o toolbox uart_fmc	
+.PHONY: uart_fmc
 #----------------------------------------------------------
 
 #----------------------------------------------------------

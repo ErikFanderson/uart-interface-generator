@@ -1,0 +1,1610 @@
+uart.name: "uart_fmc"
+uart.fields:
+- name: "FMC"
+  registers:
+  - name: "A1"
+    read: true
+    write: true
+    width: 1
+  - name: "A2"
+    read: true
+    write: true
+    width: 1
+  - name: "A3"
+    read: true
+    write: true
+    width: 1
+  - name: "A4"
+    read: true
+    write: true
+    width: 1
+  - name: "A5"
+    read: true
+    write: true
+    width: 1
+  - name: "A6"
+    read: true
+    write: true
+    width: 1
+  - name: "A7"
+    read: true
+    write: true
+    width: 1
+  - name: "A8"
+    read: true
+    write: true
+    width: 1
+  - name: "A9"
+    read: true
+    write: true
+    width: 1
+  - name: "A10"
+    read: true
+    write: true
+    width: 1
+  - name: "A11"
+    read: true
+    write: true
+    width: 1
+  - name: "A12"
+    read: true
+    write: true
+    width: 1
+  - name: "A13"
+    read: true
+    write: true
+    width: 1
+  - name: "A14"
+    read: true
+    write: true
+    width: 1
+  - name: "A15"
+    read: true
+    write: true
+    width: 1
+  - name: "A16"
+    read: true
+    write: true
+    width: 1
+  - name: "A17"
+    read: true
+    write: true
+    width: 1
+  - name: "A18"
+    read: true
+    write: true
+    width: 1
+  - name: "A19"
+    read: true
+    write: true
+    width: 1
+  - name: "A20"
+    read: true
+    write: true
+    width: 1
+  - name: "A21"
+    read: true
+    write: true
+    width: 1
+  - name: "A22"
+    read: true
+    write: true
+    width: 1
+  - name: "A23"
+    read: true
+    write: true
+    width: 1
+  - name: "A24"
+    read: true
+    write: true
+    width: 1
+  - name: "A25"
+    read: true
+    write: true
+    width: 1
+  - name: "A26"
+    read: true
+    write: true
+    width: 1
+  - name: "A27"
+    read: true
+    write: true
+    width: 1
+  - name: "A28"
+    read: true
+    write: true
+    width: 1
+  - name: "A29"
+    read: true
+    write: true
+    width: 1
+  - name: "A30"
+    read: true
+    write: true
+    width: 1
+  - name: "A31"
+    read: true
+    write: true
+    width: 1
+  - name: "A32"
+    read: true
+    write: true
+    width: 1
+  - name: "A33"
+    read: true
+    write: true
+    width: 1
+  - name: "A34"
+    read: true
+    write: true
+    width: 1
+  - name: "A35"
+    read: true
+    write: true
+    width: 1
+  - name: "A36"
+    read: true
+    write: true
+    width: 1
+  - name: "A37"
+    read: true
+    write: true
+    width: 1
+  - name: "A38"
+    read: true
+    write: true
+    width: 1
+  - name: "A39"
+    read: true
+    write: true
+    width: 1
+  - name: "A40"
+    read: true
+    write: true
+    width: 1
+  - name: "B1"
+    read: true
+    write: true
+    width: 1
+  - name: "B2"
+    read: true
+    write: true
+    width: 1
+  - name: "B3"
+    read: true
+    write: true
+    width: 1
+  - name: "B4"
+    read: true
+    write: true
+    width: 1
+  - name: "B5"
+    read: true
+    write: true
+    width: 1
+  - name: "B6"
+    read: true
+    write: true
+    width: 1
+  - name: "B7"
+    read: true
+    write: true
+    width: 1
+  - name: "B8"
+    read: true
+    write: true
+    width: 1
+  - name: "B9"
+    read: true
+    write: true
+    width: 1
+  - name: "B10"
+    read: true
+    write: true
+    width: 1
+  - name: "B11"
+    read: true
+    write: true
+    width: 1
+  - name: "B12"
+    read: true
+    write: true
+    width: 1
+  - name: "B13"
+    read: true
+    write: true
+    width: 1
+  - name: "B14"
+    read: true
+    write: true
+    width: 1
+  - name: "B15"
+    read: true
+    write: true
+    width: 1
+  - name: "B16"
+    read: true
+    write: true
+    width: 1
+  - name: "B17"
+    read: true
+    write: true
+    width: 1
+  - name: "B18"
+    read: true
+    write: true
+    width: 1
+  - name: "B19"
+    read: true
+    write: true
+    width: 1
+  - name: "B20"
+    read: true
+    write: true
+    width: 1
+  - name: "B21"
+    read: true
+    write: true
+    width: 1
+  - name: "B22"
+    read: true
+    write: true
+    width: 1
+  - name: "B23"
+    read: true
+    write: true
+    width: 1
+  - name: "B24"
+    read: true
+    write: true
+    width: 1
+  - name: "B25"
+    read: true
+    write: true
+    width: 1
+  - name: "B26"
+    read: true
+    write: true
+    width: 1
+  - name: "B27"
+    read: true
+    write: true
+    width: 1
+  - name: "B28"
+    read: true
+    write: true
+    width: 1
+  - name: "B29"
+    read: true
+    write: true
+    width: 1
+  - name: "B30"
+    read: true
+    write: true
+    width: 1
+  - name: "B31"
+    read: true
+    write: true
+    width: 1
+  - name: "B32"
+    read: true
+    write: true
+    width: 1
+  - name: "B33"
+    read: true
+    write: true
+    width: 1
+  - name: "B34"
+    read: true
+    write: true
+    width: 1
+  - name: "B35"
+    read: true
+    write: true
+    width: 1
+  - name: "B36"
+    read: true
+    write: true
+    width: 1
+  - name: "B37"
+    read: true
+    write: true
+    width: 1
+  - name: "B38"
+    read: true
+    write: true
+    width: 1
+  - name: "B39"
+    read: true
+    write: true
+    width: 1
+  - name: "B40"
+    read: true
+    write: true
+    width: 1
+  - name: "C1"
+    read: true
+    write: true
+    width: 1
+  - name: "C2"
+    read: true
+    write: true
+    width: 1
+  - name: "C3"
+    read: true
+    write: true
+    width: 1
+  - name: "C4"
+    read: true
+    write: true
+    width: 1
+  - name: "C5"
+    read: true
+    write: true
+    width: 1
+  - name: "C6"
+    read: true
+    write: true
+    width: 1
+  - name: "C7"
+    read: true
+    write: true
+    width: 1
+  - name: "C8"
+    read: true
+    write: true
+    width: 1
+  - name: "C9"
+    read: true
+    write: true
+    width: 1
+  - name: "C10"
+    read: true
+    write: true
+    width: 1
+  - name: "C11"
+    read: true
+    write: true
+    width: 1
+  - name: "C12"
+    read: true
+    write: true
+    width: 1
+  - name: "C13"
+    read: true
+    write: true
+    width: 1
+  - name: "C14"
+    read: true
+    write: true
+    width: 1
+  - name: "C15"
+    read: true
+    write: true
+    width: 1
+  - name: "C16"
+    read: true
+    write: true
+    width: 1
+  - name: "C17"
+    read: true
+    write: true
+    width: 1
+  - name: "C18"
+    read: true
+    write: true
+    width: 1
+  - name: "C19"
+    read: true
+    write: true
+    width: 1
+  - name: "C20"
+    read: true
+    write: true
+    width: 1
+  - name: "C21"
+    read: true
+    write: true
+    width: 1
+  - name: "C22"
+    read: true
+    write: true
+    width: 1
+  - name: "C23"
+    read: true
+    write: true
+    width: 1
+  - name: "C24"
+    read: true
+    write: true
+    width: 1
+  - name: "C25"
+    read: true
+    write: true
+    width: 1
+  - name: "C26"
+    read: true
+    write: true
+    width: 1
+  - name: "C27"
+    read: true
+    write: true
+    width: 1
+  - name: "C28"
+    read: true
+    write: true
+    width: 1
+  - name: "C29"
+    read: true
+    write: true
+    width: 1
+  - name: "C30"
+    read: true
+    write: true
+    width: 1
+  - name: "C31"
+    read: true
+    write: true
+    width: 1
+  - name: "C32"
+    read: true
+    write: true
+    width: 1
+  - name: "C33"
+    read: true
+    write: true
+    width: 1
+  - name: "C34"
+    read: true
+    write: true
+    width: 1
+  - name: "C35"
+    read: true
+    write: true
+    width: 1
+  - name: "C36"
+    read: true
+    write: true
+    width: 1
+  - name: "C37"
+    read: true
+    write: true
+    width: 1
+  - name: "C38"
+    read: true
+    write: true
+    width: 1
+  - name: "C39"
+    read: true
+    write: true
+    width: 1
+  - name: "C40"
+    read: true
+    write: true
+    width: 1
+  - name: "D1"
+    read: true
+    write: true
+    width: 1
+  - name: "D2"
+    read: true
+    write: true
+    width: 1
+  - name: "D3"
+    read: true
+    write: true
+    width: 1
+  - name: "D4"
+    read: true
+    write: true
+    width: 1
+  - name: "D5"
+    read: true
+    write: true
+    width: 1
+  - name: "D6"
+    read: true
+    write: true
+    width: 1
+  - name: "D7"
+    read: true
+    write: true
+    width: 1
+  - name: "D8"
+    read: true
+    write: true
+    width: 1
+  - name: "D9"
+    read: true
+    write: true
+    width: 1
+  - name: "D10"
+    read: true
+    write: true
+    width: 1
+  - name: "D11"
+    read: true
+    write: true
+    width: 1
+  - name: "D12"
+    read: true
+    write: true
+    width: 1
+  - name: "D13"
+    read: true
+    write: true
+    width: 1
+  - name: "D14"
+    read: true
+    write: true
+    width: 1
+  - name: "D15"
+    read: true
+    write: true
+    width: 1
+  - name: "D16"
+    read: true
+    write: true
+    width: 1
+  - name: "D17"
+    read: true
+    write: true
+    width: 1
+  - name: "D18"
+    read: true
+    write: true
+    width: 1
+  - name: "D19"
+    read: true
+    write: true
+    width: 1
+  - name: "D20"
+    read: true
+    write: true
+    width: 1
+  - name: "D21"
+    read: true
+    write: true
+    width: 1
+  - name: "D22"
+    read: true
+    write: true
+    width: 1
+  - name: "D23"
+    read: true
+    write: true
+    width: 1
+  - name: "D24"
+    read: true
+    write: true
+    width: 1
+  - name: "D25"
+    read: true
+    write: true
+    width: 1
+  - name: "D26"
+    read: true
+    write: true
+    width: 1
+  - name: "D27"
+    read: true
+    write: true
+    width: 1
+  - name: "D28"
+    read: true
+    write: true
+    width: 1
+  - name: "D29"
+    read: true
+    write: true
+    width: 1
+  - name: "D30"
+    read: true
+    write: true
+    width: 1
+  - name: "D31"
+    read: true
+    write: true
+    width: 1
+  - name: "D32"
+    read: true
+    write: true
+    width: 1
+  - name: "D33"
+    read: true
+    write: true
+    width: 1
+  - name: "D34"
+    read: true
+    write: true
+    width: 1
+  - name: "D35"
+    read: true
+    write: true
+    width: 1
+  - name: "D36"
+    read: true
+    write: true
+    width: 1
+  - name: "D37"
+    read: true
+    write: true
+    width: 1
+  - name: "D38"
+    read: true
+    write: true
+    width: 1
+  - name: "D39"
+    read: true
+    write: true
+    width: 1
+  - name: "D40"
+    read: true
+    write: true
+    width: 1
+  - name: "E1"
+    read: true
+    write: true
+    width: 1
+  - name: "E2"
+    read: true
+    write: true
+    width: 1
+  - name: "E3"
+    read: true
+    write: true
+    width: 1
+  - name: "E4"
+    read: true
+    write: true
+    width: 1
+  - name: "E5"
+    read: true
+    write: true
+    width: 1
+  - name: "E6"
+    read: true
+    write: true
+    width: 1
+  - name: "E7"
+    read: true
+    write: true
+    width: 1
+  - name: "E8"
+    read: true
+    write: true
+    width: 1
+  - name: "E9"
+    read: true
+    write: true
+    width: 1
+  - name: "E10"
+    read: true
+    write: true
+    width: 1
+  - name: "E11"
+    read: true
+    write: true
+    width: 1
+  - name: "E12"
+    read: true
+    write: true
+    width: 1
+  - name: "E13"
+    read: true
+    write: true
+    width: 1
+  - name: "E14"
+    read: true
+    write: true
+    width: 1
+  - name: "E15"
+    read: true
+    write: true
+    width: 1
+  - name: "E16"
+    read: true
+    write: true
+    width: 1
+  - name: "E17"
+    read: true
+    write: true
+    width: 1
+  - name: "E18"
+    read: true
+    write: true
+    width: 1
+  - name: "E19"
+    read: true
+    write: true
+    width: 1
+  - name: "E20"
+    read: true
+    write: true
+    width: 1
+  - name: "E21"
+    read: true
+    write: true
+    width: 1
+  - name: "E22"
+    read: true
+    write: true
+    width: 1
+  - name: "E23"
+    read: true
+    write: true
+    width: 1
+  - name: "E24"
+    read: true
+    write: true
+    width: 1
+  - name: "E25"
+    read: true
+    write: true
+    width: 1
+  - name: "E26"
+    read: true
+    write: true
+    width: 1
+  - name: "E27"
+    read: true
+    write: true
+    width: 1
+  - name: "E28"
+    read: true
+    write: true
+    width: 1
+  - name: "E29"
+    read: true
+    write: true
+    width: 1
+  - name: "E30"
+    read: true
+    write: true
+    width: 1
+  - name: "E31"
+    read: true
+    write: true
+    width: 1
+  - name: "E32"
+    read: true
+    write: true
+    width: 1
+  - name: "E33"
+    read: true
+    write: true
+    width: 1
+  - name: "E34"
+    read: true
+    write: true
+    width: 1
+  - name: "E35"
+    read: true
+    write: true
+    width: 1
+  - name: "E36"
+    read: true
+    write: true
+    width: 1
+  - name: "E37"
+    read: true
+    write: true
+    width: 1
+  - name: "E38"
+    read: true
+    write: true
+    width: 1
+  - name: "E39"
+    read: true
+    write: true
+    width: 1
+  - name: "E40"
+    read: true
+    write: true
+    width: 1
+  - name: "F1"
+    read: true
+    write: true
+    width: 1
+  - name: "F2"
+    read: true
+    write: true
+    width: 1
+  - name: "F3"
+    read: true
+    write: true
+    width: 1
+  - name: "F4"
+    read: true
+    write: true
+    width: 1
+  - name: "F5"
+    read: true
+    write: true
+    width: 1
+  - name: "F6"
+    read: true
+    write: true
+    width: 1
+  - name: "F7"
+    read: true
+    write: true
+    width: 1
+  - name: "F8"
+    read: true
+    write: true
+    width: 1
+  - name: "F9"
+    read: true
+    write: true
+    width: 1
+  - name: "F10"
+    read: true
+    write: true
+    width: 1
+  - name: "F11"
+    read: true
+    write: true
+    width: 1
+  - name: "F12"
+    read: true
+    write: true
+    width: 1
+  - name: "F13"
+    read: true
+    write: true
+    width: 1
+  - name: "F14"
+    read: true
+    write: true
+    width: 1
+  - name: "F15"
+    read: true
+    write: true
+    width: 1
+  - name: "F16"
+    read: true
+    write: true
+    width: 1
+  - name: "F17"
+    read: true
+    write: true
+    width: 1
+  - name: "F18"
+    read: true
+    write: true
+    width: 1
+  - name: "F19"
+    read: true
+    write: true
+    width: 1
+  - name: "F20"
+    read: true
+    write: true
+    width: 1
+  - name: "F21"
+    read: true
+    write: true
+    width: 1
+  - name: "F22"
+    read: true
+    write: true
+    width: 1
+  - name: "F23"
+    read: true
+    write: true
+    width: 1
+  - name: "F24"
+    read: true
+    write: true
+    width: 1
+  - name: "F25"
+    read: true
+    write: true
+    width: 1
+  - name: "F26"
+    read: true
+    write: true
+    width: 1
+  - name: "F27"
+    read: true
+    write: true
+    width: 1
+  - name: "F28"
+    read: true
+    write: true
+    width: 1
+  - name: "F29"
+    read: true
+    write: true
+    width: 1
+  - name: "F30"
+    read: true
+    write: true
+    width: 1
+  - name: "F31"
+    read: true
+    write: true
+    width: 1
+  - name: "F32"
+    read: true
+    write: true
+    width: 1
+  - name: "F33"
+    read: true
+    write: true
+    width: 1
+  - name: "F34"
+    read: true
+    write: true
+    width: 1
+  - name: "F35"
+    read: true
+    write: true
+    width: 1
+  - name: "F36"
+    read: true
+    write: true
+    width: 1
+  - name: "F37"
+    read: true
+    write: true
+    width: 1
+  - name: "F38"
+    read: true
+    write: true
+    width: 1
+  - name: "F39"
+    read: true
+    write: true
+    width: 1
+  - name: "F40"
+    read: true
+    write: true
+    width: 1
+  - name: "G1"
+    read: true
+    write: true
+    width: 1
+  - name: "G2"
+    read: true
+    write: true
+    width: 1
+  - name: "G3"
+    read: true
+    write: true
+    width: 1
+  - name: "G4"
+    read: true
+    write: true
+    width: 1
+  - name: "G5"
+    read: true
+    write: true
+    width: 1
+  - name: "G6"
+    read: true
+    write: true
+    width: 1
+  - name: "G7"
+    read: true
+    write: true
+    width: 1
+  - name: "G8"
+    read: true
+    write: true
+    width: 1
+  - name: "G9"
+    read: true
+    write: true
+    width: 1
+  - name: "G10"
+    read: true
+    write: true
+    width: 1
+  - name: "G11"
+    read: true
+    write: true
+    width: 1
+  - name: "G12"
+    read: true
+    write: true
+    width: 1
+  - name: "G13"
+    read: true
+    write: true
+    width: 1
+  - name: "G14"
+    read: true
+    write: true
+    width: 1
+  - name: "G15"
+    read: true
+    write: true
+    width: 1
+  - name: "G16"
+    read: true
+    write: true
+    width: 1
+  - name: "G17"
+    read: true
+    write: true
+    width: 1
+  - name: "G18"
+    read: true
+    write: true
+    width: 1
+  - name: "G19"
+    read: true
+    write: true
+    width: 1
+  - name: "G20"
+    read: true
+    write: true
+    width: 1
+  - name: "G21"
+    read: true
+    write: true
+    width: 1
+  - name: "G22"
+    read: true
+    write: true
+    width: 1
+  - name: "G23"
+    read: true
+    write: true
+    width: 1
+  - name: "G24"
+    read: true
+    write: true
+    width: 1
+  - name: "G25"
+    read: true
+    write: true
+    width: 1
+  - name: "G26"
+    read: true
+    write: true
+    width: 1
+  - name: "G27"
+    read: true
+    write: true
+    width: 1
+  - name: "G28"
+    read: true
+    write: true
+    width: 1
+  - name: "G29"
+    read: true
+    write: true
+    width: 1
+  - name: "G30"
+    read: true
+    write: true
+    width: 1
+  - name: "G31"
+    read: true
+    write: true
+    width: 1
+  - name: "G32"
+    read: true
+    write: true
+    width: 1
+  - name: "G33"
+    read: true
+    write: true
+    width: 1
+  - name: "G34"
+    read: true
+    write: true
+    width: 1
+  - name: "G35"
+    read: true
+    write: true
+    width: 1
+  - name: "G36"
+    read: true
+    write: true
+    width: 1
+  - name: "G37"
+    read: true
+    write: true
+    width: 1
+  - name: "G38"
+    read: true
+    write: true
+    width: 1
+  - name: "G39"
+    read: true
+    write: true
+    width: 1
+  - name: "G40"
+    read: true
+    write: true
+    width: 1
+  - name: "H1"
+    read: true
+    write: true
+    width: 1
+  - name: "H2"
+    read: true
+    write: true
+    width: 1
+  - name: "H3"
+    read: true
+    write: true
+    width: 1
+  - name: "H4"
+    read: true
+    write: true
+    width: 1
+  - name: "H5"
+    read: true
+    write: true
+    width: 1
+  - name: "H6"
+    read: true
+    write: true
+    width: 1
+  - name: "H7"
+    read: true
+    write: true
+    width: 1
+  - name: "H8"
+    read: true
+    write: true
+    width: 1
+  - name: "H9"
+    read: true
+    write: true
+    width: 1
+  - name: "H10"
+    read: true
+    write: true
+    width: 1
+  - name: "H11"
+    read: true
+    write: true
+    width: 1
+  - name: "H12"
+    read: true
+    write: true
+    width: 1
+  - name: "H13"
+    read: true
+    write: true
+    width: 1
+  - name: "H14"
+    read: true
+    write: true
+    width: 1
+  - name: "H15"
+    read: true
+    write: true
+    width: 1
+  - name: "H16"
+    read: true
+    write: true
+    width: 1
+  - name: "H17"
+    read: true
+    write: true
+    width: 1
+  - name: "H18"
+    read: true
+    write: true
+    width: 1
+  - name: "H19"
+    read: true
+    write: true
+    width: 1
+  - name: "H20"
+    read: true
+    write: true
+    width: 1
+  - name: "H21"
+    read: true
+    write: true
+    width: 1
+  - name: "H22"
+    read: true
+    write: true
+    width: 1
+  - name: "H23"
+    read: true
+    write: true
+    width: 1
+  - name: "H24"
+    read: true
+    write: true
+    width: 1
+  - name: "H25"
+    read: true
+    write: true
+    width: 1
+  - name: "H26"
+    read: true
+    write: true
+    width: 1
+  - name: "H27"
+    read: true
+    write: true
+    width: 1
+  - name: "H28"
+    read: true
+    write: true
+    width: 1
+  - name: "H29"
+    read: true
+    write: true
+    width: 1
+  - name: "H30"
+    read: true
+    write: true
+    width: 1
+  - name: "H31"
+    read: true
+    write: true
+    width: 1
+  - name: "H32"
+    read: true
+    write: true
+    width: 1
+  - name: "H33"
+    read: true
+    write: true
+    width: 1
+  - name: "H34"
+    read: true
+    write: true
+    width: 1
+  - name: "H35"
+    read: true
+    write: true
+    width: 1
+  - name: "H36"
+    read: true
+    write: true
+    width: 1
+  - name: "H37"
+    read: true
+    write: true
+    width: 1
+  - name: "H38"
+    read: true
+    write: true
+    width: 1
+  - name: "H39"
+    read: true
+    write: true
+    width: 1
+  - name: "H40"
+    read: true
+    write: true
+    width: 1
+  - name: "J1"
+    read: true
+    write: true
+    width: 1
+  - name: "J2"
+    read: true
+    write: true
+    width: 1
+  - name: "J3"
+    read: true
+    write: true
+    width: 1
+  - name: "J4"
+    read: true
+    write: true
+    width: 1
+  - name: "J5"
+    read: true
+    write: true
+    width: 1
+  - name: "J6"
+    read: true
+    write: true
+    width: 1
+  - name: "J7"
+    read: true
+    write: true
+    width: 1
+  - name: "J8"
+    read: true
+    write: true
+    width: 1
+  - name: "J9"
+    read: true
+    write: true
+    width: 1
+  - name: "J10"
+    read: true
+    write: true
+    width: 1
+  - name: "J11"
+    read: true
+    write: true
+    width: 1
+  - name: "J12"
+    read: true
+    write: true
+    width: 1
+  - name: "J13"
+    read: true
+    write: true
+    width: 1
+  - name: "J14"
+    read: true
+    write: true
+    width: 1
+  - name: "J15"
+    read: true
+    write: true
+    width: 1
+  - name: "J16"
+    read: true
+    write: true
+    width: 1
+  - name: "J17"
+    read: true
+    write: true
+    width: 1
+  - name: "J18"
+    read: true
+    write: true
+    width: 1
+  - name: "J19"
+    read: true
+    write: true
+    width: 1
+  - name: "J20"
+    read: true
+    write: true
+    width: 1
+  - name: "J21"
+    read: true
+    write: true
+    width: 1
+  - name: "J22"
+    read: true
+    write: true
+    width: 1
+  - name: "J23"
+    read: true
+    write: true
+    width: 1
+  - name: "J24"
+    read: true
+    write: true
+    width: 1
+  - name: "J25"
+    read: true
+    write: true
+    width: 1
+  - name: "J26"
+    read: true
+    write: true
+    width: 1
+  - name: "J27"
+    read: true
+    write: true
+    width: 1
+  - name: "J28"
+    read: true
+    write: true
+    width: 1
+  - name: "J29"
+    read: true
+    write: true
+    width: 1
+  - name: "J30"
+    read: true
+    write: true
+    width: 1
+  - name: "J31"
+    read: true
+    write: true
+    width: 1
+  - name: "J32"
+    read: true
+    write: true
+    width: 1
+  - name: "J33"
+    read: true
+    write: true
+    width: 1
+  - name: "J34"
+    read: true
+    write: true
+    width: 1
+  - name: "J35"
+    read: true
+    write: true
+    width: 1
+  - name: "J36"
+    read: true
+    write: true
+    width: 1
+  - name: "J37"
+    read: true
+    write: true
+    width: 1
+  - name: "J38"
+    read: true
+    write: true
+    width: 1
+  - name: "J39"
+    read: true
+    write: true
+    width: 1
+  - name: "J40"
+    read: true
+    write: true
+    width: 1
+  - name: "K1"
+    read: true
+    write: true
+    width: 1
+  - name: "K2"
+    read: true
+    write: true
+    width: 1
+  - name: "K3"
+    read: true
+    write: true
+    width: 1
+  - name: "K4"
+    read: true
+    write: true
+    width: 1
+  - name: "K5"
+    read: true
+    write: true
+    width: 1
+  - name: "K6"
+    read: true
+    write: true
+    width: 1
+  - name: "K7"
+    read: true
+    write: true
+    width: 1
+  - name: "K8"
+    read: true
+    write: true
+    width: 1
+  - name: "K9"
+    read: true
+    write: true
+    width: 1
+  - name: "K10"
+    read: true
+    write: true
+    width: 1
+  - name: "K11"
+    read: true
+    write: true
+    width: 1
+  - name: "K12"
+    read: true
+    write: true
+    width: 1
+  - name: "K13"
+    read: true
+    write: true
+    width: 1
+  - name: "K14"
+    read: true
+    write: true
+    width: 1
+  - name: "K15"
+    read: true
+    write: true
+    width: 1
+  - name: "K16"
+    read: true
+    write: true
+    width: 1
+  - name: "K17"
+    read: true
+    write: true
+    width: 1
+  - name: "K18"
+    read: true
+    write: true
+    width: 1
+  - name: "K19"
+    read: true
+    write: true
+    width: 1
+  - name: "K20"
+    read: true
+    write: true
+    width: 1
+  - name: "K21"
+    read: true
+    write: true
+    width: 1
+  - name: "K22"
+    read: true
+    write: true
+    width: 1
+  - name: "K23"
+    read: true
+    write: true
+    width: 1
+  - name: "K24"
+    read: true
+    write: true
+    width: 1
+  - name: "K25"
+    read: true
+    write: true
+    width: 1
+  - name: "K26"
+    read: true
+    write: true
+    width: 1
+  - name: "K27"
+    read: true
+    write: true
+    width: 1
+  - name: "K28"
+    read: true
+    write: true
+    width: 1
+  - name: "K29"
+    read: true
+    write: true
+    width: 1
+  - name: "K30"
+    read: true
+    write: true
+    width: 1
+  - name: "K31"
+    read: true
+    write: true
+    width: 1
+  - name: "K32"
+    read: true
+    write: true
+    width: 1
+  - name: "K33"
+    read: true
+    write: true
+    width: 1
+  - name: "K34"
+    read: true
+    write: true
+    width: 1
+  - name: "K35"
+    read: true
+    write: true
+    width: 1
+  - name: "K36"
+    read: true
+    write: true
+    width: 1
+  - name: "K37"
+    read: true
+    write: true
+    width: 1
+  - name: "K38"
+    read: true
+    write: true
+    width: 1
+  - name: "K39"
+    read: true
+    write: true
+    width: 1
+  - name: "K40"
+    read: true
+    write: true
+    width: 1
+- name: "RESET"
+  registers:
+  - name: "reset"
+    read: true
+    write: true
+    width: 1

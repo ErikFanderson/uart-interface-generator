@@ -42,6 +42,9 @@ jobs.ssp1_controller_single.description: "Full controller for SSP1 (single colum
 jobs.ssp1_wb_4x4.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_wb_4x4.yml"]}]
 jobs.ssp1_wb_4x4.description: "Controller for SSP1 4x4 WB Package"
 
+jobs.uart_fmc.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/uart_fmc.yml"]}]
+jobs.uart_fmc.description: "UART write/read control for full 40 * 10 FMC pinout"
+
 make.targets:
 - name: clean
   description: "Cleans directory"
