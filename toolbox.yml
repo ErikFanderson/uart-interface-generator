@@ -33,6 +33,9 @@ jobs.ssp1_cmos.description: "Generate uart interface for superswitch phase 1 dri
 jobs.ssp1_frame_driver.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_frame_driver.yml"]}]
 jobs.ssp1_frame_driver.description: "Generate uart interface for superswitch phase 1 frame fpga driver"
 
+jobs.ssp1_wb_4x4_frame_driver.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_wb_4x4_frame_driver.yml"]}]
+jobs.ssp1_wb_4x4_frame_driver.description: "Generate uart interface for superswitch phase 1 wb 4x4 frame fpga driver"
+
 jobs.ssp1_controller.tasks: [{tool: UARTIFaceTool, additional_configs: ["examples/ssp1_controller.yml"]}]
 jobs.ssp1_controller.description: "Full controller for SSP1"
 

@@ -1602,9 +1602,3 @@ uart.fields:
     read: true
     write: true
     width: 1
-- name: "RESET"
-  registers:
-  - name: "reset"
-    read: true
-    write: true
-    width: 1

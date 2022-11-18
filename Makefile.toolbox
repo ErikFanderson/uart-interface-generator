@@ -5,17 +5,18 @@ list:
 	@echo "#--------------------------------------------------------------------"
 	@echo "# Toolbox generated make targets"
 	@echo "#--------------------------------------------------------------------"
-	@echo "build                     Generates a Makefile w/ all jobs as targets"
-	@echo "test                      Just for testing"
-	@echo "uart_led                  Generate uart interface for uart_led example"
-	@echo "i2c_user_clock            VC707 uart controlled i2c master"
-	@echo "ssp1_cmos                 Generate uart interface for superswitch phase 1 driver for 1 cmos chiplet"
-	@echo "ssp1_frame_driver         Generate uart interface for superswitch phase 1 frame fpga driver"
-	@echo "ssp1_controller           Full controller for SSP1"
-	@echo "ssp1_controller_single    Full controller for SSP1 (single column)"
-	@echo "ssp1_wb_4x4               Controller for SSP1 4x4 WB Package"
-	@echo "uart_fmc                  UART write/read control for full 40 * 10 FMC pinout"
-	@echo "clean                     Cleans directory"
+	@echo "build                       Generates a Makefile w/ all jobs as targets"
+	@echo "test                        Just for testing"
+	@echo "uart_led                    Generate uart interface for uart_led example"
+	@echo "i2c_user_clock              VC707 uart controlled i2c master"
+	@echo "ssp1_cmos                   Generate uart interface for superswitch phase 1 driver for 1 cmos chiplet"
+	@echo "ssp1_frame_driver           Generate uart interface for superswitch phase 1 frame fpga driver"
+	@echo "ssp1_wb_4x4_frame_driver    Generate uart interface for superswitch phase 1 wb 4x4 frame fpga driver"
+	@echo "ssp1_controller             Full controller for SSP1"
+	@echo "ssp1_controller_single      Full controller for SSP1 (single column)"
+	@echo "ssp1_wb_4x4                 Controller for SSP1 4x4 WB Package"
+	@echo "uart_fmc                    UART write/read control for full 40 * 10 FMC pinout"
+	@echo "clean                       Cleans directory"
 	@echo "#--------------------------------------------------------------------"
 .PHONY: list 
 #----------------------------------------------------------
@@ -66,6 +67,14 @@ ssp1_cmos:
 ssp1_frame_driver: 
 	toolbox-cli --color -l info -b build -o toolbox ssp1_frame_driver	
 .PHONY: ssp1_frame_driver
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "ssp1_wb_4x4_frame_driver" 
+#----------------------------------------------------------
+ssp1_wb_4x4_frame_driver: 
+	toolbox-cli --color -l info -b build -o toolbox ssp1_wb_4x4_frame_driver	
+.PHONY: ssp1_wb_4x4_frame_driver
 #----------------------------------------------------------
 
 #----------------------------------------------------------

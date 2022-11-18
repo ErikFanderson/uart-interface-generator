@@ -22,10 +22,3 @@ if __name__ == '__main__':
             print(f'    read: true')
             print(f'    write: true')
             print(f'    width: 1')
-
-print('- name: "RESET"') 
-print('  registers:')
-print('  - name: "reset"')
-print(f'    read: true')
-print(f'    write: true')
-print(f'    width: 1')
