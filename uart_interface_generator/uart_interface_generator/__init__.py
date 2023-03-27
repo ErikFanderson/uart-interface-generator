@@ -33,13 +33,13 @@ class UARTIFaceTool(JinjaTool):
         super(UARTIFaceTool, self).__init__(db, log)
         self.uart = self.get_db(self.get_namespace("UARTIFaceTool"))
         self.bin = BinaryDriver("vlog-mem-map")
-        self.db = None 
+        self.db = None
         self.fields = None
         # UART blocks only support word width of 8 and address range of 128 (for now)
-        self.uart["word_width"] = 8 
-        self.uart["address_width"] = None 
-        self.uart["address_cycles"] = None 
-        self.uart["address_range"] = None 
+        self.uart["word_width"] = 8
+        self.uart["address_width"] = None
+        self.uart["address_cycles"] = None
+        self.uart["address_range"] = None
         # Address buffer is not helpful
         for i, field in enumerate(self.uart["fields"]):
                 self.uart["fields"][i]["address_buffer"] = 0
@@ -57,9 +57,9 @@ class UARTIFaceTool(JinjaTool):
         self.log(f"Generated config file for vlog-mem-map: {rel_out_fpath}")
         self.bin.add_option("config.yml")
         self.bin.execute(self.get_db("internal.job_dir"))
-    
+
     #--------------------------------------------------------------------------
-    # Database methods 
+    # Database methods
     #--------------------------------------------------------------------------
 
     def populate_database(self):
@@ -71,7 +71,7 @@ class UARTIFaceTool(JinjaTool):
         self.fields = self.generate_fields()
         # Calculate address range
         max_addr = self.db["fields"][-1]["registers"][-1]["msbit_address"]
-        self.uart["address_width"] = math.ceil(math.log2(max_addr))
+        self.uart["address_width"] = math.ceil(math.log2(max_addr + 1))
         if self.uart["address_width"] < 7:
             self.uart["address_cycles"] = 1
         else:
@@ -82,7 +82,7 @@ class UARTIFaceTool(JinjaTool):
         self.log(f'UART Address width: {self.uart["address_width"]}', LogLevel.INFO)
         self.log(f'UART Address range: {self.uart["address_range"]}', LogLevel.INFO)
         self.log(f'UART cycles for address: {self.uart["address_cycles"]}', LogLevel.INFO)
-    
+
     def generate_fields(self):
         """Creates memory map database"""
         fields = {}
@@ -90,7 +90,7 @@ class UARTIFaceTool(JinjaTool):
         for field in self.uart["fields"]:
             fields[field["name"]] = {"registers": {}}
             field_width = 0
-            ordered_reg = [] 
+            ordered_reg = []
             # Organize write registers first and then read (TODO maybe fix this)
             for reg in field["registers"]:
                 if reg["write"]:
@@ -101,19 +101,19 @@ class UARTIFaceTool(JinjaTool):
             for reg in ordered_reg:
                 fields[field["name"]]["registers"][reg["name"]] = {}
                 fields[field["name"]]["registers"][reg["name"]]["write"] = reg["write"]
-                fields[field["name"]]["registers"][reg["name"]]["width"] = reg["width"] 
+                fields[field["name"]]["registers"][reg["name"]]["width"] = reg["width"]
                 lsb_tot_bp = current_address * self.uart["word_width"] + field_width
-                fields[field["name"]]["registers"][reg["name"]]["lsbit_total_bit_position"] = lsb_tot_bp 
+                fields[field["name"]]["registers"][reg["name"]]["lsbit_total_bit_position"] = lsb_tot_bp
                 fields[field["name"]]["registers"][reg["name"]]["lsbit_address"] =  math.floor(lsb_tot_bp / self.uart["word_width"])
                 fields[field["name"]]["registers"][reg["name"]]["lsbit_address_bit_position"] = lsb_tot_bp % self.uart["word_width"]
                 field_width += reg["width"]
                 msb_tot_bp = current_address * self.uart["word_width"] + field_width - 1
-                fields[field["name"]]["registers"][reg["name"]]["msbit_total_bit_position"] = msb_tot_bp 
+                fields[field["name"]]["registers"][reg["name"]]["msbit_total_bit_position"] = msb_tot_bp
                 fields[field["name"]]["registers"][reg["name"]]["msbit_address"] =  math.floor(msb_tot_bp / self.uart["word_width"])
                 fields[field["name"]]["registers"][reg["name"]]["msbit_address_bit_position"] = msb_tot_bp % self.uart["word_width"]
             num_addresses = math.ceil(field_width / self.uart["word_width"])
-            fields[field["name"]]["start_address"] = current_address 
-            fields[field["name"]]["end_address"] = current_address + num_addresses - 1 
+            fields[field["name"]]["start_address"] = current_address
+            fields[field["name"]]["end_address"] = current_address + num_addresses - 1
             current_address += num_addresses
         return fields
 
@@ -137,25 +137,25 @@ class UARTIFaceTool(JinjaTool):
                 new_reg["msbit_address_bit_position"] = new_reg["msbit_total_bit_position"] % self.uart["word_width"]
                 new_field["registers"].append(new_reg)
             num_addresses = math.ceil(field_width / self.uart["word_width"])
-            new_field["start_address"] = current_address 
-            new_field["end_address"] = current_address + num_addresses - 1 
+            new_field["start_address"] = current_address
+            new_field["end_address"] = current_address + num_addresses - 1
             db["fields"].append(new_field)
             current_address += num_addresses
         return db
-    
+
     #--------------------------------------------------------------------------
     # Python HAL generation methods
     #--------------------------------------------------------------------------
-    
+
     def gen_python_hal(self):
         template = "UARTDriver.py"
         dest = os.path.join(self.get_db("internal.job_dir"), template)
         self.render_to_file(template, dest, fields=self.fields, uart=self.uart)
-    
+
     #--------------------------------------------------------------------------
-    # Generate verilog bfm 
+    # Generate verilog bfm
     #--------------------------------------------------------------------------
-    
+
     def gen_verilog_tasks(self):
         template = "uart_tasks.svh"
         dest = os.path.join(self.get_db("internal.job_dir"), template)
