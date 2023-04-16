@@ -13,53 +13,179 @@ class AbstractUARTDriver(ABC):
 
     def __init__(self, burst_read=False):
         ABC.__init__(self)
-        self._fields = {{fields}}
+        self._initialized = False
         self._burst_read = burst_read
+        self._max_addr = {{max_addr}}
+        self._memory = [0] * self._max_addr
+        self._fields = {{fields}}
 
     @abstractmethod
     def open(self):
+        """This opens the UART connection."""
         pass
 
     @abstractmethod
     def close(self):
+        """This closes the UART connection."""
         pass
 
     @abstractmethod
     def uart_write(self, data):
+        """This writes data via a UART interface.
+
+        Parameters
+        ----------
+        data: bytes
+            The data bytes to write.
+
+        """
         pass
 
     @abstractmethod
     def uart_read(self, size):
+        """This reads data via a UART interface.
+
+        Parameters
+        ----------
+        size: int
+            The number of bytes to read.
+
+        Returns
+        -------
+        bytes
+            The data read via UART.
+
+        """
         pass
 
     #---------------------------------------------------------------------------
     # Basic read/write methods
     #---------------------------------------------------------------------------
 
-    def write_byte(self, address: int, data: int):
-        addr_bin = f'0{address:0{{uart["address_width"]}}b}'
-        addr_bin += "0" * {{(uart["address_cycles"] * 8) - 1 - uart["address_width"]}}
-        bytes_bin = addr_bin + f"{data:08b}"
-        self.uart_write(int(bytes_bin, 2).to_bytes({{uart["address_cycles"] + 1}}, "big"))
+    def write_byte(self, address, data):
+        """Writes a single byte through the UART memory access controller.
 
-    def read_byte(self, address: int) -> int:
+        Parameters
+        ----------
+        address: int
+            The address to write to.
+        data: int
+            The data byte to write to the specified address.
+
+        Returns
+        -------
+        int
+            The value of the byte.
+
+        """
+        addr_bin = f'0{address:08b}'
+        addr_bin += "0" * 7
+        bytes_bin = addr_bin + f'{data:08b}'
+        self.uart_write(int(bytes_bin, 2).to_bytes(3, 'big'))
+        self._memory[address] = data
+
+    def read_byte(self, address):
+        """Reads a single byte from the UART memory access controller.
+
+        Parameters
+        ----------
+        address: int
+            The address to read from.
+
+        Returns
+        -------
+        int
+            The value of the byte.
+
+        """
         addr_bin = f'1{address:0{{uart["address_width"]}}b}'
         addr_bin += "0" * {{(uart["address_cycles"] * 8) - 1 - uart["address_width"]}}
-        self.uart_write(int(addr_bin, 2).to_bytes({{uart["address_cycles"]}}, "big"))
-        return int.from_bytes(self.uart_read(1), "big")
+        self.uart_write(int(addr_bin, 2).to_bytes({{uart["address_cycles"]}}, 'big'))
+        return int.from_bytes(self.uart_read(1), 'big')
 
-    def read_bytes(self, start_address, end_address) -> int:
+    def read_bytes(self, start_address, end_address):
+        """Reads all bytes in a software burst mode.
+
+        NOTE: this method could cause an issue if the write commands are sent
+        before the FPGA can send its read data back
+
+        Parameters
+        ----------
+        start_address: int
+            The address of the first byte to read.
+        end_address: int
+            The address of the last byte to read.
+
+        Returns
+        -------
+        int
+            The value of all bytes concatenated together.
+
+        """
         for addr in reversed(range(start_address, end_address + 1)):
             addr_bin = f'1{addr:08b}'
             addr_bin += "0" * 7
-            self.uart_write(int(addr_bin, 2).to_bytes(2, "big"))
-        return int.from_bytes(self.uart_read(end_address - start_address + 1), "big")
+            self.uart_write(int(addr_bin, 2).to_bytes(2, 'big'))
+        return int.from_bytes(self.uart_read(end_address - start_address + 1), 'big')
 
     #---------------------------------------------------------------------------
     # Register methods
     #---------------------------------------------------------------------------
 
+    def initialize(self, reset_field, reset_reg, assert_value, deassert_value):
+        """Place design in reset and initialize all memory addresses.
+
+        Parameters
+        ----------
+        reset_field: str
+            The name of the field for the reset register.
+        reset_reg: str
+            The name of the reset register.
+        assert_value: str
+            The value for asserting reset register.
+        deassert_value: str
+            The value for deasserting reset register.
+
+        """
+        # Set mem and init at start so read_all_bytes is fast and writes all 0s
+        self._memory = [0] * self._max_addr
+        self._initialized = True
+
+        # Assert reset
+        print('# BEGIN INIT MEMORY #')
+        self.write_register(reset_field, reset_reg, assert_value)
+        print(f'Field: {reset_field}, Reg: {reset_reg}, Written: 0b{assert_value}')
+
+        # Write every register except reset reg to 0
+        for field_name, field in self._fields.items():
+            for reg_name, reg in field['registers'].items():
+                if field_name != reset_field or reg_name != reset_reg:
+                    if reg['write']:
+                        wdata = '0' * reg['width']
+                        self.write_register(field_name, reg_name, wdata)
+                        print(f'Field: {field_name}, Reg: {reg_name}, Written: 0b{wdata}')
+
+        # Deassert reset
+        self.write_register(reset_field, reset_reg, deassert_value)
+        print(f'Field: {reset_field}, Reg: {reset_reg}, Written: 0b{deassert_value}')
+        print("# FINISH INIT MEMORY #")
+
     def resize(self, bin_string, new_width):
+        """Resizes (truncate or 0-pads) a binary string to a specifed width.
+
+        Parameters
+        ----------
+        bin_string: str
+            The binary string to resize.
+        new_width: int
+            The number of target bits.
+
+        Returns
+        -------
+        str
+            A new binary string of width new_width.
+
+        """
         if len(bin_string) > new_width: # Truncate
             return bin_string[len(bin_string) - new_width:len(bin_string)]
         elif len(bin_string) < new_width: # Extend
@@ -67,44 +193,114 @@ class AbstractUARTDriver(ABC):
         else:
             return bin_string
 
-    def read_all_bytes(self, field: str, reg: str) -> str:
-        start_address = self._fields[field]["registers"][reg]["lsbit_address"]
-        end_address = self._fields[field]["registers"][reg]["msbit_address"]
-        if self._burst_read:
-            rdata = self.read_bytes(start_address, end_address)
-            bin_string = '{:0{}b}'.format(rdata, (end_address - start_address + 1) * 8)
-        else:
+    def read_all_bytes(self, field, reg):
+        """Reads all of the bytes that include the specified register.
+
+        This will either return a value from the internal memory (for writeable
+        registers after initialization) or from actually reading via UART. If
+        the burst_read parameter was set to true then this function will issue
+        all read commands before reading the UART read buffer.
+
+
+        Parameters
+        ----------
+        field: str
+            The name of the field of the register.
+        reg: str
+            The name of the register.
+
+        Returns
+        -------
+        str
+            The value of all related byted in the form of a binary string.
+
+        """
+        start_address = self._fields[field]['registers'][reg]['lsbit_address']
+        end_address = self._fields[field]['registers'][reg]['msbit_address']
+        if self._initialized and self._fields[field]['registers'][reg]['write']:
             bin_strings = []
             for i in range(start_address, end_address + 1):
-                bin_strings.append(f'{self.read_byte(i):08b}')
+                bin_strings.append(f'{self._memory[i]:08b}')
             bin_string = ""
             for i, bs in enumerate(bin_strings):
                 bin_string += bin_strings[len(bin_strings)-1-i]
+        else:
+            if self._burst_read:
+                rdata = self.read_bytes(start_address, end_address)
+                bin_string = '{:0{}b}'.format(rdata, (end_address - start_address + 1) * 8)
+            else:
+                bin_strings = []
+                for i in range(start_address, end_address + 1):
+                    bin_strings.append(f'{self.read_byte(i):08b}')
+                bin_string = ""
+                for i, bs in enumerate(bin_strings):
+                    bin_string += bin_strings[len(bin_strings)-1-i]
         return bin_string
 
-    def read_register(self, field: str, reg: str) -> str:
+    def read_register(self, field, reg):
+        """Reads the specified register.
+
+        This function will read the register before only if it has not been
+        initialized or if the value is read-only. After initialization, this
+        method will always use the internally saved value of the memory instead
+        of actually reading from UART for the registers that are writeable.
+        This dramatically speeds up the function.
+
+        Parameters
+        ----------
+        field: str
+            The name of the field of the register.
+        reg: str
+            The name of the register.
+
+        Returns
+        -------
+        str
+            The value of the register in the form of a binary string.
+
+        """
         bin_string = self.read_all_bytes(field, reg)
-        lsb = len(bin_string) - self._fields[field]["registers"][reg]["lsbit_address_bit_position"]
-        msb = 7 - self._fields[field]["registers"][reg]["msbit_address_bit_position"]
+        lsb = len(bin_string) - self._fields[field]['registers'][reg]['lsbit_address_bit_position']
+        msb = 7 - self._fields[field]['registers'][reg]['msbit_address_bit_position']
         return bin_string[msb:lsb]
 
-    def write_register(self, field: str, reg: str, bin_string: str):
+    def write_register(self, field, reg, bin_string):
+        """Performs a read-modified-write of the specified register.
+
+        This function will read the register before writing only if it has not
+        been initialized. After initialization, this method will always use the
+        internally saved value of the memory instead of actually reading from
+        UART. This dramatically speeds up the function.
+
+        Parameters
+        ----------
+        field: str
+            The name of the field of the register.
+        reg: str
+            The name of the register.
+        bin_string: str
+            The value to write in the form of a binary string.
+
+        """
         # Read current value first
         current_value = self.read_all_bytes(field, reg)
         num_bits = len(current_value)
+
         # Resize binary value to write
-        bin_string = self.resize(bin_string, self._fields[field]["registers"][reg]["width"])
+        bin_string = self.resize(bin_string, self._fields[field]['registers'][reg]["width"])
+
         # Create new full value for all registers
         new_bin_string = list(current_value)
         for i, char in enumerate(bin_string):
-            j = self._fields[field]["registers"][reg]["lsbit_address_bit_position"]
+            j = self._fields[field]['registers'][reg]['lsbit_address_bit_position']
             new_bin_string[(i + j + 1) * -1] = bin_string[(i + 1) * -1]
         new_bin_string = "".join(new_bin_string)
+
         # Write bytes
-        start_address = self._fields[field]["registers"][reg]["lsbit_address"]
-        end_address = self._fields[field]["registers"][reg]["msbit_address"]
+        start_address = self._fields[field]['registers'][reg]['lsbit_address']
+        end_address = self._fields[field]['registers'][reg]['msbit_address']
         for addr in range(start_address, end_address + 1):
-            i = addr - self._fields[field]["registers"][reg]["lsbit_address"]
+            i = addr - self._fields[field]['registers'][reg]['lsbit_address']
             lsb = (num_bits - 1) - i * 8 + 1
             msb = (num_bits - 1) - ((i + 1) * 8) + 1
             data = new_bin_string[msb:lsb]

@@ -35,6 +35,7 @@ class UARTIFaceTool(JinjaTool):
         self.bin = BinaryDriver("vlog-mem-map")
         self.db = None
         self.fields = None
+        self.max_addr = None
         # UART blocks only support word width of 8 and address range of 128 (for now)
         self.uart["word_width"] = 8
         self.uart["address_width"] = None
@@ -45,7 +46,8 @@ class UARTIFaceTool(JinjaTool):
                 self.uart["fields"][i]["address_buffer"] = 0
 
     def steps(self):
-        return [self.populate_database, self.call_mem_map, self.gen_python_hal, self.gen_verilog_tasks, self.gen_uart_module]
+        return [self.populate_database, self.call_mem_map, self.gen_python_hal,
+                self.gen_verilog_tasks, self.gen_uart_module]
 
     def call_mem_map(self):
         """Just calls the memory map script in asic utils"""
@@ -70,14 +72,14 @@ class UARTIFaceTool(JinjaTool):
         self.db = self.generate_memory_map_database()
         self.fields = self.generate_fields()
         # Calculate address range
-        max_addr = self.db["fields"][-1]["registers"][-1]["msbit_address"]
-        self.uart["address_width"] = math.ceil(math.log2(max_addr + 1))
+        self.max_addr = self.db["fields"][-1]["registers"][-1]["msbit_address"]
+        self.uart["address_width"] = math.ceil(math.log2(self.max_addr + 1))
         if self.uart["address_width"] < 7:
             self.uart["address_cycles"] = 1
         else:
             self.uart["address_cycles"] = 1 + math.ceil((self.uart["address_width"] - 7) / 8)
         self.uart["address_range"] = 1 << self.uart["address_width"]
-        self.log(f'Maximum address: {max_addr}', LogLevel.INFO)
+        self.log(f'Maximum address: {self.max_addr}', LogLevel.INFO)
         self.log(f'UART word width: {self.uart["word_width"]}', LogLevel.INFO)
         self.log(f'UART Address width: {self.uart["address_width"]}', LogLevel.INFO)
         self.log(f'UART Address range: {self.uart["address_range"]}', LogLevel.INFO)
@@ -150,7 +152,8 @@ class UARTIFaceTool(JinjaTool):
     def gen_python_hal(self):
         template = "UARTDriver.py"
         dest = os.path.join(self.get_db("internal.job_dir"), template)
-        self.render_to_file(template, dest, fields=self.fields, uart=self.uart)
+        self.render_to_file(template, dest, fields=self.fields, uart=self.uart,
+                            max_addr=self.max_addr)
 
     #--------------------------------------------------------------------------
     # Generate verilog bfm
