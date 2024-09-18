@@ -78,10 +78,10 @@ class AbstractUARTDriver(ABC):
             The value of the byte.
 
         """
-        addr_bin = f'0{address:08b}'
-        addr_bin += "0" * 7
+        addr_bin = f'0{address:0{{uart["address_width"]}}b}'
+        addr_bin += "0" * {{(uart["address_cycles"] * 8) - 1 - uart["address_width"]}}
         bytes_bin = addr_bin + f'{data:08b}'
-        self.uart_write(int(bytes_bin, 2).to_bytes(3, 'big'))
+        self.uart_write(int(bytes_bin, 2).to_bytes({{uart["address_cycles"]+1}}, 'big'))
         self._memory[address] = data
 
     def read_byte(self, address):
@@ -123,9 +123,9 @@ class AbstractUARTDriver(ABC):
 
         """
         for addr in reversed(range(start_address, end_address + 1)):
-            addr_bin = f'1{addr:08b}'
-            addr_bin += "0" * 7
-            self.uart_write(int(addr_bin, 2).to_bytes(2, 'big'))
+            addr_bin = f'1{addr:0{{uart["address_width"]}}b}'
+            addr_bin += "0" * {{(uart["address_cycles"] * 8) - 1 - uart["address_width"]}}
+            self.uart_write(int(addr_bin, 2).to_bytes({{uart["address_cycles"]}}, 'big'))
         return int.from_bytes(self.uart_read(end_address - start_address + 1), 'big')
 
     #---------------------------------------------------------------------------
@@ -226,6 +226,7 @@ class AbstractUARTDriver(ABC):
                 bin_string += bin_strings[len(bin_strings)-1-i]
         else:
             if self._burst_read:
+                raise Exception('BURST READ NOT SUPPORTED BY RTL')
                 rdata = self.read_bytes(start_address, end_address)
                 bin_string = '{:0{}b}'.format(rdata, (end_address - start_address + 1) * 8)
             else:
