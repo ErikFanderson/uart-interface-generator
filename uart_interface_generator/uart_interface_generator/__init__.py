@@ -271,3 +271,29 @@ class UARTIFaceTool(JinjaTool):
         with open(out_fpath, "w") as fp:
             fp.write(uart_module.to_string())
         self.log(f"Generated final verilog module: {rel_out_fpath}")
+
+        # Generate instance and signals for *_inst file
+        inst_ports = []
+        inst_signals = []
+        for port in uart_module.ports:
+            if port.name.startswith('o_mem') or port.name.startswith('i_mem'):
+                signal_name = port.name[6:]
+            else:
+                signal_name = f'{self.uart["name"]}_{port.name}'
+            inst_ports.append(Connection(port.name, signal_name))
+            inst_signals.append(Signal(signal_name, DataType.WIRE, vec=port.vec))
+        inst_params = [Connection('BaudRate', f"{self.uart['name']}_BaudRate")]
+        inst_params.append(Connection("SystemClockFrequency", f"{self.uart['name']}_SystemClockFrequency"))
+        final_inst = ModuleInstance(self.uart["name"],
+                                    f'{self.uart["name"]}_inst', inst_ports, inst_params)
+
+        # Output inst file
+        out_fpath = os.path.join(self.get_db("internal.job_dir"),
+                                 f"{self.uart['name']}_inst.v")
+        rel_out_fpath = Path(out_fpath).relative_to(
+            self.get_db("internal.work_dir"))
+        with open(out_fpath, "w") as fp:
+            for s in inst_signals:
+                fp.write(s.to_string())
+            fp.write(final_inst.to_string())
+        self.log(f"Generated instance of uart module: {rel_out_fpath}")
