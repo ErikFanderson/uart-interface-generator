@@ -174,6 +174,7 @@ class UARTIFaceTool(JinjaTool):
         uart_module = Module(self.uart["name"])
         uart_module.add_parameter(Param("BaudRate", 9600))
         uart_module.add_parameter(Param("SystemClockFrequency", 156250000))
+        uart_module.add_parameter(Param("WriteMemReset", 1))
         uart_module.add_port(Port("i_clk", IO.INPUT, DataType.WIRE))
         uart_module.add_port(Port("i_rst", IO.INPUT, DataType.WIRE))
         uart_module.add_port(Port("o_uart_tx", IO.OUTPUT, DataType.WIRE))
@@ -249,6 +250,7 @@ class UARTIFaceTool(JinjaTool):
         # Memory controller inst
         params = [Connection("DataSize", self.uart["word_width"])]
         params += [Connection("AddressSize", self.uart["address_width"])]
+        params += [Connection("WriteMemReset", "WriteMemReset")]
         ports = [(Connection("i_clk", "i_clk"))]
         ports.append((Connection("i_rst", "i_rst")))
         ports.append((Connection("i_rx_data", "rx_data")))
@@ -284,6 +286,7 @@ class UARTIFaceTool(JinjaTool):
             inst_signals.append(Signal(signal_name, DataType.WIRE, vec=port.vec))
         inst_params = [Connection('BaudRate', f"{self.uart['name']}_BaudRate")]
         inst_params.append(Connection("SystemClockFrequency", f"{self.uart['name']}_SystemClockFrequency"))
+        inst_params.append(Connection("WriteMemReset", f"{self.uart['name']}_WriteMemReset"))
         final_inst = ModuleInstance(self.uart["name"],
                                     f'{self.uart["name"]}_inst', inst_ports, inst_params)
 
